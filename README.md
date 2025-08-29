@@ -1,6 +1,6 @@
-# Hey there! <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px" height="30px" />
+# Hey there! <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="60px" height="60px" />
 
-I'm **Ayro Escobar**, a current student at **UT Dallas** pursuing a **Bachelors's in Computer Science**. This page is a collection of some of my projects (academic and personal). I enjoy working on full-stack projects and picking up new technologies along the way. I'm particularly interested in full-stack web dev, cloud, API design, system architecture, and all sorts of branches of software development that I've come across when making some cool things. I genuinely love networking and connecting with anyone with info to share.
+I'm **Ayro Escobar**, a current student at **UT Dallas** pursuing a **Bachelor's in Computer Science**. This page is a collection of some of my projects (academic and personal). I enjoy working on full-stack projects and picking up new technologies along the way. I'm particularly interested in full-stack web dev, cloud, API design, system architecture, and all sorts of branches of software development that I've come across when making some cool things. I genuinely love networking and connecting with anyone with info to share.
 
 Feel free to explore my projects, don't hesitate to reach out if you see something that sparks your interest (or if you have any ideas 🤓)!!
 
@@ -49,7 +49,7 @@ Feel free to explore my projects, don't hesitate to reach out if you see somethi
   ![Machine Learning](https://img.shields.io/badge/Machine_Learning-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
   ![Data Science](https://img.shields.io/badge/Data_Science-4CAF50?style=flat-square&logo=python&logoColor=white)
 
-- 🚀 **InterviewLens**: Building my startup focused on helping people practie the **STAR** format for behavioral interviews
+- 🚀 **InterviewLens**: Building my startup focused on helping people practice the **STAR** format for behavioral interviews
   - 🌐 [Visit InterviewLens](https://interview-lens.com)
   - 💡 Developing innovative solutions for behavioral interview success
 
@@ -75,12 +75,22 @@ Feel free to explore my projects, don't hesitate to reach out if you see somethi
 ## 📊 GitHub Stats
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=tokyonight&count_private=true&hide_border=true" height="150" alt="GitHub Stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_USERNAME&theme=tokyonight&hide_border=true" height="150" alt="GitHub Streak" />
+  <img src="https://github-readme-stats.vercel.app/api?username=ayroescobar&show_icons=true&theme=tokyonight&count_private=true&hide_border=true&include_all_commits=true" height="180" alt="GitHub Stats" />
+  <img src="https://github-readme-streak-stats-eight.vercel.app?user=ayroescobar&theme=tokyonight&hide_border=true" height="180" alt="GitHub Streak" />
 </div>
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&theme=tokyonight&hide_border=true" height="150" alt="Top Languages" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ayroescobar&layout=compact&theme=tokyonight&hide_border=true&langs_count=10&card_width=500" height="180" alt="Top Languages" />
+</div>
+
+## 🐍 Contribution Snake
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ayroescobar/ayroescobar/output/github-contribution-grid-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ayroescobar/ayroescobar/output/github-contribution-grid-snake.svg">
+    <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/ayroescobar/ayroescobar/output/github-contribution-grid-snake.svg">
+  </picture>
 </div>
 
 ## 🎯 Skills & Interests
@@ -94,7 +104,7 @@ Feel free to explore my projects, don't hesitate to reach out if you see somethi
 ---
 
 <div align="center">
-  <img src="https://komarev.com/ghpvc/?username=YOUR_USERNAME&color=0891b2&style=flat-square" alt="Profile Views" />
+  <img src="https://komarev.com/ghpvc/?username=ayroescobar&color=blueviolet&style=for-the-badge&label=Profile+Views" alt="Profile Views" />
 </div>
 
 <div align="center">
