@@ -1,13 +1,16 @@
 # Hey there! <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px" height="30px" />
 
-I'm **Ayro Escobar**, a current student at **UT Dallas** pursuing a **Master's in Computer Science**. This page is a collection of some of my projects (academic and personal), as well as a consolidation of work I've done. I enjoy web development using JavaScript and other supporting technologies, as well as Python. I'm particularly interested in full-stack web dev, cloud, API design, system architecture, and all sorts of branches of software development that I've come across when making some cool things.
+I'm **Ayro Escobar**, a current student at **UT Dallas** pursuing a **Bachelors's in Computer Science**. This page is a collection of some of my projects (academic and personal). I enjoy working on full-stack projects and picking up new technologies along the way. I'm particularly interested in full-stack web dev, cloud, API design, system architecture, and all sorts of branches of software development that I've come across when making some cool things. I genuinely love networking and connecting with anyone with info to share.
 
 Feel free to explore my projects, don't hesitate to reach out if you see something that sparks your interest (or if you have any ideas 🤓)!!
 
 ## 📫 Connect with Me
 
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayroescobar@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayro.escobar@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/ayroescobar)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@yAyroDevelops)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/ayro.afk)
+[![TikTok](https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=tiktok&logoColor=white)](https://tiktok.com/@a.y.r.o)
 
 ## 🛠️ Languages and Tools
 
@@ -39,10 +42,20 @@ Feel free to explore my projects, don't hesitate to reach out if you see somethi
 
 ## 🚀 What I'm Working On
 
-- 🎯 **Gaia | HackAI**: Built an AI-powered journaling app for women in potentially harmful relationships using React.js, Node.js, MongoDB, Gemini API, and Tailwind CSS
-- 💼 **HackUTD**: Working as a Software Engineer on the Tech Team to optimize team display and lower latency for SVG components for North America's largest hackathon
-- 📚 **ACM UTD**: Serving as Technical Interview Prep (TIP) Officer, leading technical interview preparation sessions for 15 students
-- 🏆 **Major League Hacking**: Coaching hackathons with hundreds of participants and streaming to hundreds of viewers during Global Hack Week events
+- 🌱 **Currently Learning**: 
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+  ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=spring-boot&logoColor=white)
+  ![Machine Learning](https://img.shields.io/badge/Machine_Learning-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
+  ![Data Science](https://img.shields.io/badge/Data_Science-4CAF50?style=flat-square&logo=python&logoColor=white)
+
+- 🚀 **InterviewLens**: Building my startup focused on helping people practie the **STAR** format for behavioral interviews
+  - 🌐 [Visit InterviewLens](https://interview-lens.com)
+  - 💡 Developing innovative solutions for behavioral interview success
+
+- 🎯 **Academic Projects**: Working on various Computer Science projects at UT Dallas
+- 📚 **Research Interests**: Exploring AI/ML applications and full-stack development
+- 🔬 **Currently Exploring**: Deep learning frameworks, advanced algorithms, and system design patterns
 
 ## 💼 Leadership Experience
 
