@@ -95,7 +95,7 @@ Feel free to explore my projects, don't hesitate to reach out if you see somethi
 
 ## 🎯 Skills & Interests
 
-**Technical Skills**: Team Player, Outgoing, Social, Problem Solver, Detail-Oriented
+**Soft Skills**: Team Player, Outgoing, Social, Problem Solver, Detail-Oriented, Communicative
 
 **Languages**: English, Spanish
 
