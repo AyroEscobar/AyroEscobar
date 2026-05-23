@@ -2,7 +2,7 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:6dd5ff,100:d99cff&height=200&section=header&text=AYRO%20ESCOBAR&fontSize=60&fontColor=ffffff&fontAlignY=40&animation=fadeIn" alt="header" />
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&pause=1000&color=6DD5FF&center=true&vCenter=true&width=720&lines=AI+agent+builder;operator+%2F%2F+always+online;twenty+and+in+a+hurry+on+purpose;here+to+win." alt="roles" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&pause=1000&color=6DD5FF&center=true&vCenter=true&width=720&lines=software+engineer;builder;operator+%2F%2F+always+online;twenty+and+in+a+hurry+on+purpose;here+to+win." alt="roles" />
 
 <br/>
 
@@ -19,25 +19,25 @@ I am twenty years old, out of Plano, Texas. I am trying to build a life where my
 
 - **MD7** · Software Engineer Intern, currently shipping
 - **JP Morgan** · Software Engineer Intern, incoming this summer
-- **RBC New York** · Just came off an inaugural AidenEdge rotation, six trading desks in four months, an AI agent shipped on every one
+- **RBC New York** · Just came off an inaugural AidenEdge rotation, six trading desks in four months
 - **Major League Hacking** · Coach · **HackUTD** · Tech team
-- Building a 24/7 multi-agent system that handles my finances, my health, and the briefing I wake up to
+- Building a 24/7 system that handles my finances, my health, and the briefing I wake up to
 
 ## ◇ Stack
 
 <div align="center">
 
-**Languages and Frameworks**
+**Languages**
 
-<img src="https://skillicons.dev/icons?i=java,ts,js,py,cpp,react,nextjs,nodejs,spring,tailwind&perline=10" alt="languages and frameworks" />
+<img src="https://skillicons.dev/icons?i=java,ts,js,py,cpp,sql&perline=10" alt="languages" />
 
-**Data and Cloud**
+**Frameworks**
 
-<img src="https://skillicons.dev/icons?i=aws,postgres,firebase,supabase,mongodb,kafka,graphql,git,vercel&perline=10" alt="data and cloud" />
+<img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,spring,tailwind,expo&perline=10" alt="frameworks" />
 
-**AI and Agents**
+**Data and Tooling**
 
-Prompt Engineering · Multi-agent systems · Agent orchestration · Claude · Gemini · OpenAI
+<img src="https://skillicons.dev/icons?i=aws,postgres,firebase,supabase,mongodb,kafka,graphql,git,vercel&perline=10" alt="data and tooling" />
 
 </div>
 
@@ -58,11 +58,11 @@ Prompt Engineering · Multi-agent systems · Agent orchestration · Claude · Ge
 
 | Project | What it is | Status |
 | :--- | :--- | :---: |
-| **[Interview-Lens](https://interview-lens.com)** | AI mock interview coach with live speech recognition | `LIVE` |
+| **[Interview-Lens](https://interview-lens.com)** | Mock interview coach with live speech recognition | `LIVE` |
 | **Aviation** | Maintenance and flight log for general aviation pilots | `BUILDING` |
 | **[ReQuest](https://github.com/acm-projects/ReQuest)** | Recycle, donate, or dispose of items by photo | `SHIPPED` |
 | **[Gaia](https://github.com/AyroEscobar/HackAI2025)** | Safety journaling for at risk users, DSM-5 based risk model | `HACKATHON` |
-| **24/7 Multi-Agent System** | Runs my finances, my health, my daily briefing | `ALWAYS ON` |
+| **24/7 System** | Runs my finances, my health, my daily briefing | `ALWAYS ON` |
 
 ---
 
