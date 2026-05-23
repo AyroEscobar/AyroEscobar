@@ -23,3 +23,16 @@ RUNNING   a 24/7 agent system, 20+ services
 MINDSET   everything compounds
 BASE      Plano, Texas
 ```
+
+---
+
+### `[ DEPLOYMENT.LOG ]`
+
+```
+2026             MD7                    Software Engineer Intern   currently shipping
+SUMMER 2026      JP Morgan              Software Engineer Intern   incoming
+JAN to APR 2026  RBC New York           Software Engineer Intern   inaugural AidenEdge cohort, six trading desks, every one shipped an AI system
+2025 to PRESENT  Major League Hacking   Coach
+2025 to PRESENT  HackUTD                Tech team, Hack Portal
+2025             ACM UTD                Technical Interview Prep Officer
+```
