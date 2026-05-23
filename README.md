@@ -46,3 +46,16 @@ JAN to APR 2026  RBC New York           Software Engineer Intern   inaugural Aid
 - **Aviation** · Maintenance and flight log for general aviation pilots
 - **ReQuest** · Recycle, donate, or dispose of items by photo · [acm-projects/ReQuest](https://github.com/acm-projects/ReQuest)
 - **Gaia** · Safety journaling for at risk users, built at HackAI · [AyroEscobar/HackAI2025](https://github.com/AyroEscobar/HackAI2025)
+
+---
+
+### `[ STACK.MATRIX ]`
+
+```
+LANGUAGES     Java · TypeScript · JavaScript · Python · C++ · SQL
+AI & AGENTS   Prompt Engineering · Multi-agent systems · Claude · Gemini · OpenAI
+FRAMEWORKS    React · Next.js · Node.js · Spring Boot · React Native · Tailwind
+CLOUD & DATA  AWS · PostgreSQL · Firebase · Supabase · Kafka · GraphQL
+```
+
+`AWS Certified Cloud Practitioner` · Solutions Architect next
