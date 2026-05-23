@@ -13,20 +13,31 @@
 
 </div>
 
-I am twenty years old and **I love this**. Not the idea of it, the actual work, the late nights deep in a problem until it finally gives. I am hungry, I do not slow down, and I am not here to be good. **I am here to win.**
+I am twenty years old, out of Plano, Texas. I am trying to build a life where my family never has to worry about money, and ship a few things that outlast me along the way. That sentence is the whole map. Every role I take and every hour I spend gets weighed against it.
 
 ## ◇ Currently
 
-- Software Engineer Intern at **MD7**, incoming at **JP Morgan** this summer
-- Came off **RBC New York**, where I shipped an AI agent on every one of the six trading desks I rotated through
-- Running a 24/7 multi-agent system that handles my money, my health, and the briefing I wake up to
-- Coach at **Major League Hacking**, tech team at **HackUTD**
+- **MD7** · Software Engineer Intern, currently shipping
+- **JP Morgan** · Software Engineer Intern, incoming this summer
+- **RBC New York** · Just came off an inaugural AidenEdge rotation, six trading desks in four months, an AI agent shipped on every one
+- **Major League Hacking** · Coach · **HackUTD** · Tech team
+- Building a 24/7 multi-agent system that handles my finances, my health, and the briefing I wake up to
 
 ## ◇ Stack
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=java,ts,js,py,cpp,react,nextjs,nodejs,spring,tailwind,aws,postgres,firebase,supabase,git,vercel&perline=8" alt="stack" />
+**Languages and Frameworks**
+
+<img src="https://skillicons.dev/icons?i=java,ts,js,py,cpp,react,nextjs,nodejs,spring,tailwind&perline=10" alt="languages and frameworks" />
+
+**Data and Cloud**
+
+<img src="https://skillicons.dev/icons?i=aws,postgres,firebase,supabase,mongodb,kafka,graphql,git,vercel&perline=10" alt="data and cloud" />
+
+**AI and Agents**
+
+Prompt Engineering · Multi-agent systems · Agent orchestration · Claude · Gemini · OpenAI
 
 </div>
 
@@ -45,18 +56,20 @@ I am twenty years old and **I love this**. Not the idea of it, the actual work, 
 
 ## ◇ Selected work
 
-- **[Interview-Lens](https://interview-lens.com)** · AI mock interview coach with live speech recognition · `LIVE`
-- **Aviation** · Maintenance and flight log for general aviation pilots · `BUILDING`
-- **[ReQuest](https://github.com/acm-projects/ReQuest)** · Recycle, donate, or dispose of items by photo · `SHIPPED`
-- **[Gaia](https://github.com/AyroEscobar/HackAI2025)** · Safety journaling for at risk users, built at HackAI · `HACKATHON`
-- **24/7 Multi-Agent System** · the system that runs my life
+| Project | What it is | Status |
+| :--- | :--- | :---: |
+| **[Interview-Lens](https://interview-lens.com)** | AI mock interview coach with live speech recognition | `LIVE` |
+| **Aviation** | Maintenance and flight log for general aviation pilots | `BUILDING` |
+| **[ReQuest](https://github.com/acm-projects/ReQuest)** | Recycle, donate, or dispose of items by photo | `SHIPPED` |
+| **[Gaia](https://github.com/AyroEscobar/HackAI2025)** | Safety journaling for at risk users, DSM-5 based risk model | `HACKATHON` |
+| **24/7 Multi-Agent System** | Runs my finances, my health, my daily briefing | `ALWAYS ON` |
 
 ---
 
 <div align="center">
 
-**I am not here to be good. I am here to win.**
+**"The cost of doing the work is doing the work. There is no shortcut."**
 
-`AWS Certified Cloud Practitioner` · Solutions Architect next · always building
+`AWS Certified Cloud Practitioner` · Solutions Architect next
 
 </div>
