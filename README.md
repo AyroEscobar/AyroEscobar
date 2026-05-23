@@ -36,3 +36,13 @@ JAN to APR 2026  RBC New York           Software Engineer Intern   inaugural Aid
 2025 to PRESENT  HackUTD                Tech team, Hack Portal
 2025             ACM UTD                Technical Interview Prep Officer
 ```
+
+---
+
+### `[ BUILD.LOG ]`
+
+- **24/7 Multi-Agent System** · the system that runs my life. Always on, 20+ scheduled agents handling finances, health, news, and the briefing I wake up to.
+- **Interview-Lens** · AI mock interview coach with live speech recognition · [interview-lens.com](https://interview-lens.com)
+- **Aviation** · Maintenance and flight log for general aviation pilots
+- **ReQuest** · Recycle, donate, or dispose of items by photo · [acm-projects/ReQuest](https://github.com/acm-projects/ReQuest)
+- **Gaia** · Safety journaling for at risk users, built at HackAI · [AyroEscobar/HackAI2025](https://github.com/AyroEscobar/HackAI2025)
