@@ -12,3 +12,14 @@ Twenty years old · Plano, Texas · UTD CS 2027
 ```
 
 I am twenty years old and **I love this**. Not the idea of it, the actual work, the late nights deep in a problem until it finally gives. I am hungry, I do not slow down, and I am not here to be good. **I am here to win.**
+
+---
+
+### `[ STATUS.NOW ]`
+
+```
+FOCUS     AI agents that ship
+RUNNING   a 24/7 agent system, 20+ services
+MINDSET   everything compounds
+BASE      Plano, Texas
+```
