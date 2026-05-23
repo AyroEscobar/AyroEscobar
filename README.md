@@ -59,3 +59,12 @@ CLOUD & DATA  AWS · PostgreSQL · Firebase · Supabase · Kafka · GraphQL
 ```
 
 `AWS Certified Cloud Practitioner` · Solutions Architect next
+
+---
+
+### `[ TELEMETRY ]`
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=AyroEscobar&show_icons=true&hide_title=false&bg_color=07080d&text_color=d4dde9&title_color=6dd5ff&icon_color=6dd5ff&border_color=1f2532" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AyroEscobar&layout=compact&bg_color=07080d&text_color=d4dde9&title_color=6dd5ff&border_color=1f2532" />
+</div>
