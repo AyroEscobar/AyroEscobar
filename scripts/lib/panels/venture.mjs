@@ -1,5 +1,5 @@
 // Venture plate: one per entry in profile.ventures. The name with the role beside it, a seam,
-// then the product's own words at full width, and the position lights an aircraft flies with.
+// then the product's own words at full width, and the two position lights an aircraft flies with.
 // The plate grows to fit its entry, so adding a venture to profile.json needs no code change.
 import { palettes, type, fonts } from '../tokens.mjs';
 import { Doc, el, panelBase, panelFrame } from '../svg.mjs';
@@ -50,13 +50,19 @@ export function venture(v, theme) {
     ),
   );
 
-  // domain, top right, with port (red), starboard (green) and strobe (white) lights
+  // the domain, top right
   const dom = doc.text(fonts.mono, v.domain, { x: RIGHT, y: 40, size: type.label, anchor: 'end' });
-  const lights = [pal.beacon, pal.green, pal.led];
-  doc.add(
-    el('g', { fill: pal.sodium }, dom.markup),
-    ...lights.map((fill, i) => el('circle', { cx: dom.x - 16 - (lights.length - 1 - i) * 14, cy: 33, r: 3.5, fill })),
-  );
+  doc.add(el('g', { fill: pal.sodium }, dom.markup));
   panelFrame(doc);
+
+  // Position lights where an aircraft carries them, as if the plate were a wing seen from
+  // above: red port on the left edge, green starboard on the right, each a lens set into the
+  // frame line with a little light spilling onto the plate.
+  for (const [cx, fill] of [[0.5, pal.beacon], [W - 0.5, pal.green]]) {
+    doc.add(
+      el('circle', { cx, cy: H / 2, r: 16, fill, 'fill-opacity': 0.12 }),
+      el('rect', { x: cx - 4, y: H / 2 - 11, width: 8, height: 22, rx: 4, fill }),
+    );
+  }
   return doc.render();
 }
