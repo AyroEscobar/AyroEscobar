@@ -34,6 +34,6 @@ export function card(p, theme, side) {
     el('g', { fill: pal.ink }, title.markup + tag.markup),
     el('g', { fill: pal.dim }, meta.markup),
   );
-  panelFrame(doc, { ticks: ['tr'] });
+  panelFrame(doc);
   return doc.render();
 }

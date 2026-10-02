@@ -10,7 +10,7 @@ export const palettes = {
     ink: '#F3ECDF', // names and primary text            15.8:1 on night
     dim: '#9AA7C2', // dates, roles, metadata             7.7:1
     sodium: '#FFA53D', // past work, lit traces, links (text) 9.5:1
-    sodiumStroke: '#FFA53D', // the same hue for strokes and ticks
+    sodiumStroke: '#FFA53D', // the same hue for strokes
     led: '#D6E6FF', // current work and "now"             14.7:1
     beacon: '#FF5A47', // the one live indicator, never text 6.0:1
     trace: '#2A3757', // unlit roads, unlit sign dots (decorative)
@@ -57,8 +57,6 @@ export const frame = {
   radius: 14, // panel corner radius
   hairline: 1, // frame stroke
   hairlineOpacity: 0.7,
-  tick: 10, // corner tick arm length
-  tickInset: 8,
 };
 
 export const motion = {

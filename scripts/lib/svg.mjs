@@ -87,15 +87,15 @@ export class Doc {
   }
 }
 
-// The shared panel: an opaque rounded screen, a hairline frame, corner ticks.
-// ticks: 'all' for the four corners, or a list such as ['tl'].
+// The shared panel: an opaque rounded screen and a hairline frame. No corner ticks: the site
+// cuts HUD brackets, and the panels should read as instruments, not a template.
 export function panelBase(doc, { bg = 'night' } = {}) {
   const { w, h, pal } = doc;
   doc.add(el('rect', { width: w, height: h, rx: F.radius, fill: pal[bg] }));
   return doc;
 }
 
-export function panelFrame(doc, { ticks = 'all' } = {}) {
+export function panelFrame(doc) {
   const { w, h, pal } = doc;
   doc.add(
     el('rect', {
@@ -108,24 +108,6 @@ export function panelFrame(doc, { ticks = 'all' } = {}) {
       stroke: pal.traceLit,
       'stroke-width': F.hairline,
       'stroke-opacity': F.hairlineOpacity,
-    }),
-  );
-  const i = F.tickInset;
-  const t = F.tick;
-  const corners = {
-    tl: `M${i} ${i + t}V${i}H${i + t}`,
-    tr: `M${w - i - t} ${i}H${w - i}V${i + t}`,
-    br: `M${w - i} ${h - i - t}V${h - i}H${w - i - t}`,
-    bl: `M${i + t} ${h - i}H${i}V${h - i - t}`,
-  };
-  const which = ticks === 'all' ? Object.keys(corners) : ticks;
-  doc.add(
-    el('path', {
-      d: which.map((k) => corners[k]).join(''),
-      fill: 'none',
-      stroke: pal.sodiumStroke,
-      'stroke-width': 2,
-      'stroke-linecap': 'square',
     }),
   );
   return doc;
