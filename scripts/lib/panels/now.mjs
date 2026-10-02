@@ -6,10 +6,11 @@ import { CELL_W, CELL_H, litDots, dotsPath } from '../dotmatrix.mjs';
 import { MONTHS, monthShort } from '../dates.mjs';
 
 const W = 880;
-const H = 280;
-const PITCH = 7;
-const R = 2.6;
-const COLS = 115; // 19 characters plus a one-dot margin each side
+const PITCH = 5; // capitals are seven dots, 35 units, about 12 px in a phone column
+const R = 1.9;
+const FACE_X = 50; // the face runs the width of the panel, the way a gantry sign does
+const COLS = Math.floor((W - 2 * FACE_X) / PITCH);
+const FACE_Y = 56;
 const ROW_GAP = 2; // dark rows between lines of text
 const ROLE_COL = 9; // the role column starts at the tenth character cell
 
@@ -25,8 +26,6 @@ export function now(profile, theme) {
   // use the night palette in both themes. Only the plate around it, its label and stamp follow
   // the theme.
   const sign = palettes.dark;
-  const doc = new Doc({ w: W, h: H, pal, title: 'Now board', desc: nowAlt(profile) });
-
   const lines = profile.now.map((n) => {
     if (n.org.length >= ROLE_COL) throw new Error(`now board: ${n.org} is longer than the org column`);
     return n.org.padEnd(ROLE_COL, ' ') + n.role;
@@ -37,13 +36,17 @@ export function now(profile, theme) {
   const rows = 1 + lines.length * CELL_H + (lines.length - 1) * ROW_GAP + 1;
   const faceW = COLS * PITCH;
   const faceH = rows * PITCH;
-  const faceX = (W - faceW) / 2;
-  const faceY = 60;
+  const faceX = FACE_X;
+  const faceY = FACE_Y;
   const pad = 10;
   const housing = { x: faceX - pad, y: faceY - pad, width: faceW + 2 * pad, height: faceH + 2 * pad };
-  if (housing.y + housing.height > H - 18) throw new Error('now board: housing does not fit');
+  const H = housing.y + housing.height + 18;
+  const doc = new Doc({ w: W, h: H, pal, title: 'Now board', desc: nowAlt(profile) });
 
-  const dots = lines.flatMap((l, k) => litDots(l, 1, 1 + k * (CELL_H + ROW_GAP)));
+  // the message is centred on the face, its columns shared so the roles line up
+  const textCols = Math.max(...lines.map((l) => l.length)) * (CELL_W + 1) - 1;
+  const col0 = Math.floor((COLS - textCols) / 2);
+  const dots = lines.flatMap((l, k) => litDots(l, col0, 1 + k * (CELL_H + ROW_GAP)));
   const d = dotsPath(dots, { x0: faceX + PITCH / 2, y0: faceY + PITCH / 2, pitch: PITCH, r: R });
 
   doc.defs.push(
@@ -57,8 +60,8 @@ export function now(profile, theme) {
 
   const [year, month] = profile.asOf.split('-').map(Number);
   const asOf = `${monthShort(month)} ${year}`;
-  const label = doc.text(fonts.mono, 'now board', { x: 48, y: 40, size: type.label });
-  const stamp = doc.text(fonts.mono, `as of ${asOf}`, { x: W - 48, y: 40, size: type.label, anchor: 'end' });
+  const label = doc.text(fonts.mono, 'now board', { x: 48, y: 34, size: type.label });
+  const stamp = doc.text(fonts.mono, `as of ${asOf}`, { x: W - 48, y: 34, size: type.label, anchor: 'end' });
 
   panelBase(doc);
   doc.add(
@@ -78,7 +81,7 @@ export function now(profile, theme) {
         .join(''),
     ),
     el('rect', { x: faceX, y: faceY, width: faceW, height: faceH, fill: 'url(#mx)' }),
-    el('use', { href: '#ld', fill: sign.led, stroke: sign.led, 'stroke-width': 3.4, 'stroke-opacity': 0.22 }),
+    el('use', { href: '#ld', fill: sign.led, stroke: sign.led, 'stroke-width': 2.4, 'stroke-opacity': 0.22 }),
     el('use', { href: '#ld', fill: sign.led }),
   );
   panelFrame(doc);
