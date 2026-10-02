@@ -1,0 +1,105 @@
+{
+  "asOf": "2026-10-01",
+  "identity": {
+    "name": "Ayro Escobar",
+    "line": "software engineer · plano, tx · cs at ut dallas",
+    "site": "ayroescobar.com",
+    "alt": "Ayro Escobar. Software engineer from Plano, Texas, studying computer science at UT Dallas. Click for ayroescobar.com.",
+    "factIds": ["identity-name", "identity-role", "identity-hometown", "identity-student", "ln-website"]
+  },
+  "now": [
+    { "org": "VIAERE", "role": "CO-FOUNDER", "say": "Viaere, co-founder", "factIds": ["ven-viaere-bio"] },
+    { "org": "MD7", "role": "ENGINEER", "say": "MD7, engineer", "factIds": ["exp-md7"] },
+    { "org": "MLH", "role": "COACH", "say": "MLH, coach", "factIds": ["exp-mlh-coach"] }
+  ],
+  "route": [
+    { "date": "2025 to 2026", "org": "HackUTD", "role": "tech team, HackPortal", "state": "done", "say": "HackUTD tech team, 2025 to 2026", "factIds": ["com-hackutd"] },
+    { "date": "2025 to now", "org": "Major League Hacking", "role": "coach", "state": "now", "say": "MLH coach, 2025 to now", "factIds": ["exp-mlh-coach"] },
+    { "date": "jan to apr 2026", "org": "RBC Capital Markets, NYC", "role": "software engineer intern, AidenEdge", "state": "done", "branches": 6, "say": "RBC Capital Markets, New York, software engineer intern, January to April 2026, six desks", "factIds": ["exp-rbc"] },
+    { "date": "2026 to now", "org": "Viaere", "role": "co-founder, engineering", "state": "now", "say": "Viaere co-founder, engineering, 2026 to now", "factIds": ["ven-viaere", "ven-viaere-bio", "ven-viaere-dates"] },
+    { "date": "may 2026 to now", "org": "MD7", "role": "software engineer, contract", "state": "now", "say": "MD7 software engineer, contract, May 2026 to now", "factIds": ["exp-md7"] },
+    { "date": "jun to aug 2026", "org": "JPMorgan Chase, CIB", "role": "software engineer intern", "state": "done", "say": "JPMorgan Chase CIB software engineer intern, June to August 2026", "factIds": ["exp-jpm-2026"] }
+  ],
+  "ventures": [
+    {
+      "slug": "viaere",
+      "name": "Viaere",
+      "role": "co-founder, engineering",
+      "tagline": "Know what's red before you walk into the hangar.",
+      "line": "fleet operations for people who fly for a living",
+      "domain": "viaere.com",
+      "href": "https://viaere.com",
+      "alt": "Viaere: co-founder, engineering. Know what's red before you walk into the hangar. Maintenance-first fleet operations software for flight schools, charter operators, flying clubs and managed owners.",
+      "factIds": ["ven-viaere", "ven-viaere-bio", "ven-viaere-tagline", "ln-viaere"]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "pool-tournament-system",
+      "title": "pool tournament",
+      "tagline": "100,000+ assertions",
+      "meta": "2026 · cs 4302",
+      "href": "https://github.com/AyroEscobar/pool-tournament-system",
+      "alt": "Pool tournament scheduler, 2026. A single-file web app that schedules and simulates an eight-ball tournament, checked by just over 100,000 assertions.",
+      "factIds": ["prj-pool-tournament"]
+    },
+    {
+      "slug": "neetcode-coach",
+      "title": "neetcode coach",
+      "tagline": "hints, never answers",
+      "meta": "2026 · java",
+      "href": "https://github.com/AyroEscobar/neetcode-coach",
+      "alt": "neetcode coach, 2026. A Socratic NeetCode 150 coach in Java that runs inside Claude Code and never writes the solution.",
+      "factIds": ["prj-neetcode-coach"]
+    },
+    {
+      "slug": "routed",
+      "title": "routed",
+      "tagline": "voice ai calls ahead",
+      "meta": "2025 · hack the north",
+      "href": "https://github.com/AyroEscobar/HTN2025",
+      "alt": "Routed, Hack the North 2025. A trip planner that pairs recommendations with action, with a voice AI that calls ahead.",
+      "factIds": ["prj-routed"]
+    },
+    {
+      "slug": "gaia",
+      "title": "gaia",
+      "tagline": "safety journaling",
+      "meta": "2025 · hackai",
+      "href": "https://github.com/AyroEscobar/HackAI2025",
+      "alt": "Gaia, HackAI 2025. An AI journaling app for women in unsafe relationships that tracks emotional change over time.",
+      "factIds": ["prj-gaia"]
+    },
+    {
+      "slug": "request",
+      "title": "request",
+      "tagline": "point camera, recycle",
+      "meta": "2025 · acm utd",
+      "href": "https://github.com/acm-projects/ReQuest",
+      "alt": "ReQuest, ACM UTD Projects 2025. Point your camera at an item and it tells you where to recycle, sell, donate or dispose of it.",
+      "factIds": ["prj-request"]
+    },
+    {
+      "slug": "hackutd-bot",
+      "title": "hackutd bot",
+      "tagline": "discord, python",
+      "meta": "2025 · hackutd",
+      "href": "https://github.com/AyroEscobar/HackUTDDiscordBot",
+      "alt": "HackUTD bot, 2025. A Python bot for HackUTD's Discord servers.",
+      "factIds": ["prj-hackutd-bot"]
+    }
+  ],
+  "pulse": {
+    "login": "AyroEscobar",
+    "alt": "The last 52 weeks of GitHub activity, drawn as a lit route. Redrawn every day by a scheduled workflow in this repo.",
+    "factIds": ["ln-github"]
+  },
+  "links": {
+    "website": "https://ayroescobar.com",
+    "email": "mailto:ayro.escobar@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/ayroescobar",
+    "instagram": "https://www.instagram.com/ayro.afk",
+    "github": "https://github.com/AyroEscobar",
+    "factIds": ["ln-website", "ln-email", "ln-linkedin", "ln-instagram", "ln-github"]
+  }
+}
