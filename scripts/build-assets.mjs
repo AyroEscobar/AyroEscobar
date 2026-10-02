@@ -13,6 +13,7 @@ import { hero } from './lib/panels/hero.mjs';
 import { now } from './lib/panels/now.mjs';
 import { route } from './lib/panels/route.mjs';
 import { venture } from './lib/panels/venture.mjs';
+import { card } from './lib/panels/card.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -28,6 +29,9 @@ export function staticFiles(profile) {
     files.push([`now-${theme}.svg`, now(profile, theme)]);
     files.push([`route-${theme}.svg`, route(profile, theme)]);
     for (const v of profile.ventures) files.push([`ventures/${v.slug}-${theme}.svg`, venture(v, theme)]);
+    profile.projects.forEach((p, i) => {
+      files.push([`projects/${p.slug}-${theme}.svg`, card(p, theme, i % 2 ? 'right' : 'left')]);
+    });
   }
   return files;
 }
