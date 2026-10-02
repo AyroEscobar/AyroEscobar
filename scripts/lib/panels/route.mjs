@@ -7,9 +7,9 @@ const W = 880;
 const LINE_X = 80;
 const TEXT_X = 116;
 const RIGHT = 840;
-const TOP = 74; // first org baseline
+const TOP = 64; // first org baseline
 const STEP = 80; // between stops
-const ROLE_DY = 37; // org baseline to role baseline
+const ROLE_DY = 33; // org baseline to role baseline: closer to its own org than to the next
 const DOT_DY = -12; // org baseline to dot centre (middle of the capitals)
 
 export function routeAlt(profile) {
@@ -20,7 +20,7 @@ export function route(profile, theme) {
   const pal = palettes[theme];
   const stops = profile.route;
   const lastY = TOP + (stops.length - 1) * STEP;
-  const H = lastY + ROLE_DY + 66;
+  const H = lastY + ROLE_DY + 48;
   const doc = new Doc({ w: W, h: H, pal, title: 'Route', desc: routeAlt(profile) });
 
   panelBase(doc);
@@ -80,11 +80,12 @@ export function route(profile, theme) {
   });
   doc.add(el('g', { fill: pal.ink }, ink.join('')), el('g', { fill: pal.dim }, dim.join('')));
 
-  // legend, bottom right: colour is never the only signal (the dates say "to now")
-  const ly = H - 26;
-  const nowTxt = doc.text(fonts.mono, 'led = now', { x: RIGHT, y: ly, size: type.label, anchor: 'end' });
+  // legend, bottom right: colour is never the only signal (the dates say "to now"). Done stops
+  // glow sodium and current ones LED white; the legend says it in plain words.
+  const ly = H - 20;
+  const nowTxt = doc.text(fonts.mono, 'now', { x: RIGHT, y: ly, size: type.label, anchor: 'end' });
   const nowDot = nowTxt.x - 14;
-  const doneTxt = doc.text(fonts.mono, 'sodium = done', { x: nowDot - 26, y: ly, size: type.label, anchor: 'end' });
+  const doneTxt = doc.text(fonts.mono, 'done', { x: nowDot - 26, y: ly, size: type.label, anchor: 'end' });
   const doneDot = doneTxt.x - 14;
   doc.add(
     el('circle', { cx: doneDot, cy: ly - 7, r: 5, fill: pal.sodiumStroke }),
