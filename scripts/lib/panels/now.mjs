@@ -21,6 +21,10 @@ export function nowAlt(profile) {
 
 export function now(profile, theme) {
   const pal = palettes[theme];
+  // A backlit sign has a dark face in daylight too, so the housing, the matrix and the lit dots
+  // use the night palette in both themes. Only the plate around it, its label and stamp follow
+  // the theme.
+  const sign = palettes.dark;
   const doc = new Doc({ w: W, h: H, pal, title: 'Now board', desc: nowAlt(profile) });
 
   const lines = profile.now.map((n) => {
@@ -46,7 +50,7 @@ export function now(profile, theme) {
     el(
       'pattern',
       { id: 'mx', width: PITCH, height: PITCH, patternUnits: 'userSpaceOnUse', x: faceX, y: faceY },
-      el('circle', { cx: PITCH / 2, cy: PITCH / 2, r: R, fill: pal.trace }),
+      el('circle', { cx: PITCH / 2, cy: PITCH / 2, r: R, fill: sign.trace }),
     ),
     el('path', { id: 'ld', d }),
   );
@@ -58,11 +62,11 @@ export function now(profile, theme) {
   panelBase(doc);
   doc.add(
     el('g', { fill: pal.dim }, label.markup + stamp.markup),
-    el('rect', { ...housing, rx: 10, fill: pal.deck, stroke: pal.traceLit, 'stroke-opacity': 0.5 }),
+    el('rect', { ...housing, rx: 10, fill: sign.deck, stroke: pal.traceLit, 'stroke-opacity': 0.5 }),
     // four mounting bolts, the way a sign is hung
     el(
       'g',
-      { fill: pal.traceLit },
+      { fill: sign.traceLit },
       [
         [housing.x + 5, housing.y + 5],
         [housing.x + housing.width - 5, housing.y + 5],
@@ -73,8 +77,8 @@ export function now(profile, theme) {
         .join(''),
     ),
     el('rect', { x: faceX, y: faceY, width: faceW, height: faceH, fill: 'url(#mx)' }),
-    el('use', { href: '#ld', fill: pal.led, stroke: pal.led, 'stroke-width': 3.4, 'stroke-opacity': 0.22 }),
-    el('use', { href: '#ld', fill: pal.led }),
+    el('use', { href: '#ld', fill: sign.led, stroke: sign.led, 'stroke-width': 3.4, 'stroke-opacity': 0.22 }),
+    el('use', { href: '#ld', fill: sign.led }),
   );
   panelFrame(doc);
   return doc.render();
