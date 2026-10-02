@@ -11,7 +11,7 @@
 I am twenty years old, out of Plano, Texas. I am trying to build a life where my family never has to worry about money, and ship a few things that outlast me along the way. That sentence is the whole map. Every role I take and every hour I spend gets weighed against it.
 
 <p>
-<a href="https://viaere.com">
+<a href="#now">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/now-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/now-light.svg">
@@ -22,22 +22,26 @@ I am twenty years old, out of Plano, Texas. I am trying to build a life where my
 
 ## now
 
-- **Viaere** · Co-founder, Engineering. Maintenance-first fleet operations software for anyone who flies aircraft for a living: flight schools, charter operators, flying clubs and managed owners. I build the product end to end, ship every release, and answer the phone. Built beside the hangar floor with Garrett Taylor (maintenance) and Dylan Badowski (flight operations). [viaere.com](https://viaere.com)
+- **Viaere** · Co-founder, Engineering. I build the product end to end, ship every release, and answer the phone. Built beside the hangar floor with Garrett Taylor (maintenance) and Dylan Badowski (flight operations). [viaere.com](https://viaere.com)
 - **MD7** · Software Engineer (contract), since May 2026. Executive dashboards that replace Power BI, shipped directly with the CTO, with real ownership over architecture and ship cadence.
 - **Major League Hacking** · Coach, since 2025. Hackathons, Global Hack Week streams, and a weekly CSV to Google Sheet automation the team ran. Spoke at Hackcon 2026 ("Planning for Chaos").
 - **UT Dallas** · B.S. Computer Science, in progress. AWS Certified Cloud Practitioner.
 
+<p>
+<a href="https://viaere.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/ventures/viaere-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/ventures/viaere-light.svg">
+    <img src="assets/ventures/viaere-dark.svg" width="100%" alt="Viaere: co-founder, engineering. Know what's red before you walk into the hangar. Maintenance-first fleet operations software for flight schools, charter operators, flying clubs and managed owners.">
+  </picture>
+</a>
+</p>
+
 ## built
 
 <p>
-<a href="https://github.com/AyroEscobar/pool-tournament-system"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/pool-tournament-system-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/pool-tournament-system-light.svg"><img src="assets/projects/pool-tournament-system-dark.svg" width="49.9%" alt="Pool tournament scheduler, 2026. A single-file web app that schedules and simulates an eight-ball tournament, checked by just over 100,000 assertions."></picture></a><a href="https://github.com/AyroEscobar/neetcode-coach"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/neetcode-coach-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/neetcode-coach-light.svg"><img src="assets/projects/neetcode-coach-dark.svg" width="49.9%" alt="neetcode coach, 2026. A Socratic NeetCode 150 coach in Java that runs inside Claude Code and never writes the solution."></picture></a>
-</p>
-
-<p>
-<a href="https://github.com/AyroEscobar/HTN2025"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/routed-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/routed-light.svg"><img src="assets/projects/routed-dark.svg" width="49.9%" alt="Routed, Hack the North 2025. A trip planner that pairs recommendations with action, with a voice AI that calls ahead."></picture></a><a href="https://github.com/AyroEscobar/HackAI2025"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/gaia-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/gaia-light.svg"><img src="assets/projects/gaia-dark.svg" width="49.9%" alt="Gaia, HackAI 2025, with a team. An AI journaling app for women in unsafe relationships that tracks emotional change over time."></picture></a>
-</p>
-
-<p>
+<a href="https://github.com/AyroEscobar/pool-tournament-system"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/pool-tournament-system-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/pool-tournament-system-light.svg"><img src="assets/projects/pool-tournament-system-dark.svg" width="49.9%" alt="Pool tournament scheduler, 2026. A single-file web app that schedules and simulates an eight-ball tournament, checked by just over 100,000 assertions."></picture></a><a href="https://github.com/AyroEscobar/neetcode-coach"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/neetcode-coach-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/neetcode-coach-light.svg"><img src="assets/projects/neetcode-coach-dark.svg" width="49.9%" alt="neetcode coach, 2026. A Socratic NeetCode 150 coach in Java that runs inside Claude Code and never writes the solution."></picture></a><br>
+<a href="https://github.com/AyroEscobar/HTN2025"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/routed-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/routed-light.svg"><img src="assets/projects/routed-dark.svg" width="49.9%" alt="Routed, Hack the North 2025. A trip planner that pairs recommendations with action, with a voice AI that calls ahead."></picture></a><a href="https://github.com/AyroEscobar/HackAI2025"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/gaia-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/gaia-light.svg"><img src="assets/projects/gaia-dark.svg" width="49.9%" alt="Gaia, HackAI 2025, with a team. An AI journaling app for women in unsafe relationships that tracks emotional change over time."></picture></a><br>
 <a href="https://github.com/acm-projects/ReQuest"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/request-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/request-light.svg"><img src="assets/projects/request-dark.svg" width="49.9%" alt="ReQuest, ACM UTD Projects. Point your camera at an item and it tells you where to recycle, sell, donate or dispose of it."></picture></a><a href="https://github.com/AyroEscobar/HackUTDDiscordBot"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/hackutd-bot-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/hackutd-bot-light.svg"><img src="assets/projects/hackutd-bot-dark.svg" width="49.9%" alt="HackUTD bot, 2025. A Python bot for HackUTD's Discord servers."></picture></a>
 </p>
 
@@ -55,33 +59,7 @@ Two more off the cards: [Interview-Lens](https://interview-lens.com) ([code](htt
 
 </details>
 
-<p>
-<a href="https://viaere.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/ventures/viaere-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/ventures/viaere-light.svg">
-    <img src="assets/ventures/viaere-dark.svg" width="100%" alt="Viaere: co-founder, engineering. Know what's red before you walk into the hangar. Maintenance-first fleet operations software for flight schools, charter operators, flying clubs and managed owners.">
-  </picture>
-</a>
-</p>
-
-## before
-
-- **RBC Capital Markets, New York** · Software Engineer Intern, January to April 2026. Inaugural AidenEdge cohort, one of ten interns, six trading-floor desks in four months. That door opened at Hack the North, where someone from RBC saw something in me.
-
-  <details>
-  <summary>the six desks</summary>
-
-  - **Rates Trading and FX Algorithms** · An AI code review agent trained on 4,000+ pull request comments from the desk's two strongest engineers. It runs as a first pass before human review.
-  - **Rates Trading** · A trade compression tool that breaks compression swaps down into their underlying risks.
-  - **Quantitative Investment Strategies** (with Digital and AI Innovation) · An autonomous multi-agent platform that parallelizes research, analysis and report generation across 60+ quant strategies, cutting processing from 2 hours to 10 minutes per strategy. Integrated into RBC's internal systems.
-  - **AI and Digital Innovation** · Audited 4,700+ internal AI agents into 12 centralized workflows, surfacing a 70% redundancy rate and trimming prompt logic to cut token waste.
-  - **Cross-Asset Sales** · An AI editorial QA agent for the desk's flagship research brief, a global markets digest read by 1,500+ employees including executives. It reviews every issue before it sends.
-  - **Alternative Asset Group** · An automated SEC filing pipeline that pulls 20 credit reports in 5 minutes, down from about an hour, comparing N-CSR and 13F filings into structured storage.
-
-  </details>
-
-- **JPMorgan Chase, CIB** · Software Engineer Intern, Plano, June to August 2026. Real work, a team that pushed me when I needed it, and more learned in one summer than I expected.
+## route
 
 <p>
 <a href="https://ayroescobar.com">
@@ -92,6 +70,21 @@ Two more off the cards: [Interview-Lens](https://interview-lens.com) ([code](htt
   </picture>
 </a>
 </p>
+
+- **RBC Capital Markets, New York** · Software Engineer Intern, January to April 2026. Inaugural AidenEdge cohort, one of ten interns, six trading-floor desks in four months. That door opened at Hack the North, where someone from RBC saw something in me.
+- **JPMorgan Chase, CIB** · Software Engineer Intern, Plano, June to August 2026. Real work, a team that pushed me when I needed it, and more learned in one summer than I expected.
+
+<details>
+<summary>the six desks</summary>
+
+- **Rates Trading and FX Algorithms** · An AI code review agent trained on 4,000+ pull request comments from the desk's two strongest engineers. It runs as a first pass before human review.
+- **Rates Trading** · A trade compression tool that breaks compression swaps down into their underlying risks.
+- **Quantitative Investment Strategies** (with Digital and AI Innovation) · An autonomous multi-agent platform that parallelizes research, analysis and report generation across 60+ quant strategies, cutting processing from 2 hours to 10 minutes per strategy. Integrated into RBC's internal systems.
+- **AI and Digital Innovation** · Audited 4,700+ internal AI agents into 12 centralized workflows, surfacing a 70% redundancy rate and trimming prompt logic to cut token waste.
+- **Cross-Asset Sales** · An AI editorial QA agent for the desk's flagship research brief, a global markets digest read by 1,500+ employees including executives. It reviews every issue before it sends.
+- **Alternative Asset Group** · An automated SEC filing pipeline that pulls 20 credit reports in 5 minutes, down from about an hour, comparing N-CSR and 13F filings into structured storage.
+
+</details>
 
 ## community
 
