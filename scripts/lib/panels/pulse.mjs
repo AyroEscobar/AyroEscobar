@@ -2,7 +2,7 @@
 // the render-profile workflow. Weekly sums, log scaled, no axis and no numbers; the only
 // number on the panel is the real time of the last sync.
 import { palettes, type, fonts } from '../tokens.mjs';
-import { Doc, el, panelBase, panelFrame } from '../svg.mjs';
+import { Doc, el, fmt, panelBase, panelFrame } from '../svg.mjs';
 import { utcStamp } from '../dates.mjs';
 
 const W = 880;
@@ -34,11 +34,13 @@ export function pulse(weeks, stamp, theme, alt) {
       const t = level(w);
       const x1 = X0 + i * SEG + 1;
       const x2 = X0 + (i + 1) * SEG - 1;
+      const width = 2.5 + 2.5 * t;
       if (t > 0.55) glow += `M${x1} ${Y}H${x2}`;
+      // round caps, pulled in by half the width so every week keeps its own footprint
       return el('path', {
-        d: `M${x1} ${Y}H${x2}`,
+        d: `M${fmt(x1 + width / 2)} ${Y}H${fmt(x2 - width / 2)}`,
         stroke: mix(pal.trace, pal.sodiumStroke, t),
-        'stroke-width': 2.5 + 2.5 * t,
+        'stroke-width': width,
       });
     })
     .join('');
@@ -48,8 +50,8 @@ export function pulse(weeks, stamp, theme, alt) {
 
   doc.add(
     el('path', { d: `M${X0 - 26} ${Y}H${X0}`, stroke: pal.trace, 'stroke-width': 2, 'stroke-dasharray': '2 5', fill: 'none' }),
-    glow ? el('path', { d: glow, stroke: pal.sodiumStroke, 'stroke-width': 10, 'stroke-opacity': 0.13, fill: 'none' }) : '',
-    el('g', { fill: 'none' }, segs),
+    glow ? el('path', { d: glow, stroke: pal.sodiumStroke, 'stroke-width': 10, 'stroke-opacity': 0.13, 'stroke-linecap': 'round', fill: 'none' }) : '',
+    el('g', { fill: 'none', 'stroke-linecap': 'round' }, segs),
     el('circle', { cx: end + 2, cy: Y, r: 10, fill: pal.night }),
     el('circle', { cx: end + 2, cy: Y, r: 6.5, fill: pal.led }),
     el('g', { fill: pal.dim }, line.markup),
