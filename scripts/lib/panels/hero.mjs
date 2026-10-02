@@ -113,7 +113,7 @@ export function hero(profile, theme) {
   // Type, defined once and used twice: as ink, and as a halo inside the grid's mask.
   const runs_ = [
     { id: 'tn', font: fonts.display, str: name, x: 48, y: 152, size: type.heroName, tracking: -0.02, fill: pal.ink, halo: 12 },
-    { id: 'tl', font: fonts.mono, str: line, x: 48, y: 210, size: type.heroLine, tracking: -0.02, fill: pal.dim, halo: 14, plate: true },
+    { id: 'tl', font: fonts.mono, str: line, x: 48, y: 210, size: type.heroLine, tracking: -0.02, fill: pal.dim, halo: 14, plate: true, plateTop: 150 },
     { id: 'tc', font: fonts.mono, str: site, x: W - 36, y: 46, size: type.label, anchor: 'end', fill: pal.sodium, halo: 10, plate: true },
   ];
   // The name keeps a halo that follows each glyph. The two mono runs get one rounded label
@@ -124,7 +124,8 @@ export function hero(profile, theme) {
     if (run.x < 40 || run.end > W - 34) throw new Error(`hero text out of bounds: ${t.str} (${run.x}..${run.end})`);
     doc.defs.push(run.markup);
     if (t.plate) {
-      const top = t.y - ASCENT * t.size - t.halo;
+      // the subtitle's plate reaches up to the name's baseline, so no road survives in the gap
+      const top = t.plateTop ?? t.y - ASCENT * t.size - t.halo;
       plates.push({ x: run.x - t.halo, y: top, width: run.width + 2 * t.halo, height: t.y + DESCENT * t.size + t.halo - top, rx: t.halo });
     }
   }
