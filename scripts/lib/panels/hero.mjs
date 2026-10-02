@@ -1,8 +1,8 @@
 // Hero: his name set over an abstract night grid. The roads near one focal node are lit in
 // sodium with streetlights along them, a red obstruction beacon cycles at the node, and one
-// LED packet travels the main spine. The grid is procedural and seeded: it depicts no real
-// place. Text gets a cartographic halo (the grid is masked out around the name's glyphs and
-// under a plate behind each mono label).
+// LED packet comes in along an arterial and arrives at the node. The grid is procedural and
+// seeded: it depicts no real place. Text gets a cartographic halo (the grid is masked out
+// around the name's glyphs and under a plate behind each mono label).
 import { palettes, type, motion, fonts, frame } from '../tokens.mjs';
 import { Doc, el, fmt, panelBase, panelFrame, polyD } from '../svg.mjs';
 import { prng } from '../prng.mjs';
@@ -100,7 +100,7 @@ function grid() {
     const end = [p[0] + Math.cos(ang + bend) * len, p[1] + Math.sin(ang + bend) * len];
     roads.push(catmull([p, mid, end], 5));
   }
-  return { roads, spineA, inbound: traces[2] };
+  return { roads, inbound: traces[2] };
 }
 
 export function hero(profile, theme) {
@@ -108,7 +108,7 @@ export function hero(profile, theme) {
   const { name, line, site, alt } = profile.identity;
   const doc = new Doc({ w: W, h: H, pal, title: name, desc: alt });
   const [fx, fy] = FOCAL;
-  const { roads, spineA } = grid();
+  const { roads, inbound } = grid();
 
   // Type, defined once and used twice: as ink, and as a halo inside the grid's mask.
   const runs_ = [
@@ -141,13 +141,14 @@ export function hero(profile, theme) {
   const allD = roads.map((p) => polyD(p, false)).join('');
   const litD = roads.flatMap((p) => runs(p, near)).map((p) => polyD(p)).join('');
 
-  // Packet geometry: one dash on spine A. Parked (no motion) just short of the beacon.
-  const s = arcLengths(spineA);
+  // Packet geometry: one dash that comes in from the east edge along the arterial through the
+  // node and arrives at the beacon. Parked (no motion) just short of it.
+  const iF = inbound.findIndex((p) => p[0] === fx && p[1] === fy);
+  const route = inbound.slice(iF).reverse();
+  const s = arcLengths(route);
   const total = s[s.length - 1];
-  const iF = spineA.findIndex((p) => p[0] === fx && p[1] === fy);
-  const sF = s[iF];
   const P = motion.packetLength;
-  const parked = -(sF - 10 - P);
+  const parked = -(total - 10 - P);
 
   doc.defs.push(
     el('path', { id: 'rd', d: allD }),
@@ -199,7 +200,7 @@ export function hero(profile, theme) {
 
   panelBase(doc);
   doc.add(el('rect', { width: W, height: H, rx: frame.radius, fill: 'url(#hz)' }));
-  const packetD = polyD(spineA);
+  const packet = { class: 'pk', d: polyD(route), stroke: pal.led, 'stroke-dasharray': `${fmt(P)} ${fmt(total + P)}` };
   doc.add(
     el(
       'g',
@@ -211,13 +212,8 @@ export function hero(profile, theme) {
         el('use', { href: '#lit', stroke: 'url(#lg)', 'stroke-width': 5, 'stroke-opacity': 0.16 }) +
         el('use', { href: '#lit', stroke: 'url(#lg)', 'stroke-width': 1.3 }) +
         el('use', { href: '#lit', stroke: 'url(#lg)', 'stroke-width': 2.6, 'stroke-dasharray': '0 11' }) +
-        el('path', {
-          class: 'pk',
-          d: packetD,
-          stroke: pal.led,
-          'stroke-width': 2.4,
-          'stroke-dasharray': `${fmt(P)} ${fmt(total + P)}`,
-        }),
+        el('path', { ...packet, 'stroke-width': 7, 'stroke-opacity': 0.2 }) +
+        el('path', { ...packet, 'stroke-width': 3.5 }),
     ),
   );
 
