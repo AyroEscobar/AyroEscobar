@@ -36,21 +36,21 @@ export const palettes = {
 
 export const themes = Object.keys(palettes);
 
-// Type sizes in SVG units. An 880-wide panel shows at 0.41x to 0.44x in a phone column
-// (358 to 390 px) and a card at about 0.40x, so anything a person must read is 28 or larger
-// in a panel (30 where the layout has room) and 30 in a card. Smaller text is decoration and
-// is repeated in the alt text or the Markdown.
+// Type sizes in SVG units. The GitHub profile column is 308 px at a 390 phone, 278 at 360
+// (scale 0.35 for an 880 panel, 0.348 for a 442-unit card at 49.9%), so every content line is
+// 36 units, about 12.5 px on that phone, and the pulse stamp is 34 (it repeats in the alt and
+// the footer). The 22-unit label is decoration and is repeated in the alt text or the Markdown.
 export const type = {
   heroName: 112,
-  heroLine: 28,
+  heroLine: 36,
   label: 22,
-  routeOrg: 34,
-  routeLine: 30,
+  routeOrg: 36,
+  routeLine: 36,
   ventureName: 64,
-  ventureLine: 30,
+  ventureLine: 36,
   cardTitle: 44,
-  cardLine: 30,
-  pulseLine: 28,
+  cardLine: 36,
+  pulseLine: 34,
 };
 
 export const frame = {

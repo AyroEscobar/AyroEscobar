@@ -67,10 +67,14 @@ export function route(profile, theme) {
     doc.add(el('circle', { cx: LINE_X, cy, r: 10, fill: pal.night }), el('circle', { cx: LINE_X, cy, r: 7, fill: color }));
 
     const org = doc.text(fonts.display, s.org, { x: TEXT_X, y, size: type.routeOrg });
-    const date = doc.text(fonts.mono, s.date, { x: RIGHT, y, size: type.routeLine, anchor: 'end' });
     const role = doc.text(fonts.mono, s.role, { x: TEXT_X, y: y + ROLE_DY, size: type.routeLine });
-    if (org.end + 24 > date.x) throw new Error(`route: "${s.org}" runs into its date`);
     if (role.end > RIGHT) throw new Error(`route: "${s.role}" is too wide`);
+    // the date sits right of the org; a long org pushes it down to the role line, never smaller
+    let date = doc.text(fonts.mono, s.date, { x: RIGHT, y, size: type.routeLine, anchor: 'end' });
+    if (org.end + 24 > date.x) {
+      date = doc.text(fonts.mono, s.date, { x: RIGHT, y: y + ROLE_DY, size: type.routeLine, anchor: 'end' });
+      if (role.end + 24 > date.x) throw new Error(`route: "${s.org}" runs into its date`);
+    }
     ink.push(org.markup);
     dim.push(date.markup, role.markup);
   });

@@ -4,7 +4,7 @@ import { palettes, type, fonts } from '../tokens.mjs';
 import { Doc, el, panelBase, panelFrame } from '../svg.mjs';
 
 const W = 430;
-const H = 166;
+const H = 172;
 const STOP_X = 30;
 const TITLE_X = 50;
 const TEXT_X = 22;
@@ -18,11 +18,11 @@ export function card(p, theme, side) {
   const doc = new Doc({ w: W, h: H, pal, title: p.title, desc: p.alt, vw: W + GUTTER, ox: side === 'right' ? GUTTER : 0 });
   panelBase(doc, { bg: 'deck' });
 
-  const titleY = 54;
+  const titleY = 52;
   const stopY = titleY - (type.cardTitle * 0.511) / 2; // centre of the lowercase letters
   const title = doc.text(fonts.display, p.title, { x: TITLE_X, y: titleY, size: type.cardTitle });
-  const tag = doc.text(fonts.mono, p.tagline, { x: TEXT_X, y: 104, size: type.cardLine });
-  const meta = doc.text(fonts.mono, p.meta, { x: TEXT_X, y: 142, size: type.cardLine });
+  const tag = doc.text(fonts.mono, p.tagline, { x: TEXT_X, y: 102, size: type.cardLine });
+  const meta = doc.text(fonts.mono, p.meta, { x: TEXT_X, y: 146, size: type.cardLine });
   for (const [what, run] of [['title', title], ['tagline', tag], ['meta', meta]]) {
     if (run.end > RIGHT) throw new Error(`card ${p.slug}: ${what} is too wide (${Math.round(run.end)} > ${RIGHT})`);
   }

@@ -3,6 +3,7 @@
 import { palettes, type, fonts } from '../tokens.mjs';
 import { Doc, el, panelBase, panelFrame } from '../svg.mjs';
 import { CELL_W, CELL_H, litDots, dotsPath } from '../dotmatrix.mjs';
+import { MONTHS } from '../dates.mjs';
 
 const W = 880;
 const H = 280;
@@ -11,7 +12,6 @@ const R = 2.6;
 const COLS = 115; // 19 characters plus a one-dot margin each side
 const ROW_GAP = 2; // dark rows between lines of text
 const ROLE_COL = 9; // the role column starts at the tenth character cell
-const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export function nowAlt(profile) {
   const [y, m] = profile.asOf.split('-').map(Number);

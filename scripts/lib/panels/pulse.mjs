@@ -3,6 +3,7 @@
 // number on the panel is the real time of the last sync.
 import { palettes, type, fonts } from '../tokens.mjs';
 import { Doc, el, panelBase, panelFrame } from '../svg.mjs';
+import { utcStamp } from '../dates.mjs';
 
 const W = 880;
 const H = 120;
@@ -17,7 +18,7 @@ function mix(a, b, t) {
   return '#' + ca.map((v, i) => Math.round(v + (cb[i] - v) * t).toString(16).padStart(2, '0')).join('').toUpperCase();
 }
 
-// weeks: 52 weekly totals, oldest first. stamp: "YYYY-MM-DD HH:MM".
+// weeks: 52 weekly totals, oldest first. stamp: "oct 2, 2026 · 04:09" (utc).
 export function pulse(weeks, stamp, theme, alt) {
   if (weeks.length !== WEEKS) throw new Error(`pulse needs ${WEEKS} weeks, got ${weeks.length}`);
   const pal = palettes[theme];
@@ -42,7 +43,7 @@ export function pulse(weeks, stamp, theme, alt) {
     })
     .join('');
 
-  const line = doc.text(fonts.mono, `last sync ${stamp} utc · rebuilt daily`, { x: X0, y: 96, size: type.pulseLine });
+  const line = doc.text(fonts.mono, `last sync ${stamp} utc`, { x: X0, y: 96, size: type.pulseLine });
   if (line.end > W - 38) throw new Error('pulse: stamp line too wide');
 
   doc.add(
@@ -76,6 +77,6 @@ export async function fetchWeeks(login, token) {
 
 export async function liveFiles(profile, { token, now }) {
   const weeks = await fetchWeeks(profile.pulse.login, token);
-  const stamp = now.toISOString().slice(0, 16).replace('T', ' ');
+  const stamp = utcStamp(now);
   return Object.keys(palettes).map((theme) => [`pulse-${theme}.svg`, pulse(weeks, stamp, theme, profile.pulse.alt)]);
 }
