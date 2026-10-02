@@ -3,7 +3,7 @@
 import { palettes, type, fonts } from '../tokens.mjs';
 import { Doc, el, panelBase, panelFrame } from '../svg.mjs';
 import { CELL_W, CELL_H, litDots, dotsPath } from '../dotmatrix.mjs';
-import { MONTHS } from '../dates.mjs';
+import { MONTHS, monthShort } from '../dates.mjs';
 
 const W = 880;
 const H = 280;
@@ -55,7 +55,8 @@ export function now(profile, theme) {
     el('path', { id: 'ld', d }),
   );
 
-  const asOf = profile.asOf.slice(0, 7);
+  const [year, month] = profile.asOf.split('-').map(Number);
+  const asOf = `${monthShort(month)} ${year}`;
   const label = doc.text(fonts.mono, 'now board', { x: 48, y: 40, size: type.label });
   const stamp = doc.text(fonts.mono, `as of ${asOf}`, { x: W - 48, y: 40, size: type.label, anchor: 'end' });
 
