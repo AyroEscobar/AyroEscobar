@@ -10,6 +10,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { themes } from './lib/tokens.mjs';
 import { hero } from './lib/panels/hero.mjs';
+import { now } from './lib/panels/now.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -22,6 +23,7 @@ export function staticFiles(profile) {
   const files = [];
   for (const theme of themes) {
     files.push([`hero-${theme}.svg`, hero(profile, theme)]);
+    files.push([`now-${theme}.svg`, now(profile, theme)]);
   }
   return files;
 }
