@@ -67,16 +67,16 @@
       "tagline": "safety journaling",
       "meta": "2025 · hackai",
       "href": "https://github.com/AyroEscobar/HackAI2025",
-      "alt": "Gaia, HackAI 2025. An AI journaling app for women in unsafe relationships that tracks emotional change over time.",
+      "alt": "Gaia, HackAI 2025, with a team. An AI journaling app for women in unsafe relationships that tracks emotional change over time.",
       "factIds": ["prj-gaia"]
     },
     {
       "slug": "request",
       "title": "request",
       "tagline": "point camera, recycle",
-      "meta": "2025 · acm utd",
+      "meta": "acm utd projects",
       "href": "https://github.com/acm-projects/ReQuest",
-      "alt": "ReQuest, ACM UTD Projects 2025. Point your camera at an item and it tells you where to recycle, sell, donate or dispose of it.",
+      "alt": "ReQuest, ACM UTD Projects. Point your camera at an item and it tells you where to recycle, sell, donate or dispose of it.",
       "factIds": ["prj-request"]
     },
     {
