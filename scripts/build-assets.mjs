@@ -3,8 +3,13 @@
 //
 //   node scripts/build-assets.mjs                     static panels into assets/ (default)
 //   node scripts/build-assets.mjs --static --out DIR  static panels into DIR instead
+//   node scripts/build-assets.mjs --live --out DIR    the live pulse (reads the clock and the
+//                                                     GitHub API with GH_TOKEN) into DIR
+//   node scripts/build-assets.mjs --all --out DIR     both
 //
-// Deterministic: the same profile.json and glyph atlases give byte-identical files.
+// Static mode is deterministic: the same profile.json and glyph atlases give byte-identical
+// files. Live mode is the only path that touches the network or the clock, and it exits
+// non-zero rather than write a broken panel.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -45,14 +50,26 @@ function write(dir, files) {
 }
 
 async function main(argv) {
+  const has = (f) => argv.includes(f);
   const outIdx = argv.indexOf('--out');
   const out = outIdx >= 0 ? resolve(argv[outIdx + 1]) : null;
+  const doLive = has('--live') || has('--all');
+  const doStatic = has('--static') || has('--all') || !doLive;
   const profile = loadProfile();
 
-  const dir = out ?? join(ROOT, 'assets');
-  const files = staticFiles(profile);
-  write(dir, files);
-  console.log(`static: ${files.length} files -> ${dir}`);
+  if (doStatic) {
+    const dir = out ?? join(ROOT, 'assets');
+    const files = staticFiles(profile);
+    write(dir, files);
+    console.log(`static: ${files.length} files -> ${dir}`);
+  }
+  if (doLive) {
+    if (!out) throw new Error('--live needs --out <dir>');
+    const { liveFiles } = await import('./lib/panels/pulse.mjs');
+    const files = await liveFiles(profile, { token: process.env.GH_TOKEN, now: new Date() });
+    write(out, files);
+    console.log(`live: ${files.length} files -> ${out}`);
+  }
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
