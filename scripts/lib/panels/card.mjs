@@ -19,6 +19,7 @@ const GRID_FIELD = [
   { c: 'butter', x: 520, y: 30, r: 270 },
   { c: 'sky', x: 860, y: 230, r: 320 },
   { c: 'lilac', x: 330, y: 380, r: 300 },
+  { c: 'peach', x: 40, y: 330, r: 220, k: 0.85 },
   { c: 'rose', x: 700, y: 520, r: 280 },
   { c: 'mint', x: 70, y: 600, r: 240, k: 0.85 },
   { c: 'butter', x: 430, y: 690, r: 220, k: 0.7 },
