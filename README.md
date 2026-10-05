@@ -103,9 +103,9 @@ AI agents and multi-agent systems, on trading desks and in my own life. Claude C
 
 Building something, stuck on something hard, or just want to trade ideas? My inbox is open and I move fast. I am always down to meet people who build.
 
-<p align="center"><samp>
-<a href="https://ayroescobar.com">ayroescobar.com</a> &nbsp;·&nbsp; <a href="mailto:ayro.escobar@gmail.com">ayro.escobar@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/ayroescobar">linkedin</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/ayro.afk">instagram</a>
-</samp></p>
+<p align="center">
+<a href="https://ayroescobar.com">ayroescobar.com</a>&nbsp;&nbsp;·&nbsp; <a href="mailto:ayro.escobar@gmail.com">ayro.escobar@gmail.com</a>&nbsp;&nbsp;·&nbsp; <a href="https://www.linkedin.com/in/ayroescobar">linkedin</a>&nbsp;&nbsp;·&nbsp; <a href="https://www.instagram.com/ayro.afk">instagram</a>
+</p>
 
 <p>
 <a href=".github/workflows/render.yml">
