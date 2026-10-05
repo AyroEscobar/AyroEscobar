@@ -1,5 +1,4 @@
-// Dates in words. Overpass Mono's hyphen fills its whole cell, so 2026-10 reads as a dash range;
-// the panels say "oct 2026" instead.
+// Dates in words: the panels say "oct 2026", never 2026-10, which reads as a dash range.
 export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 // "oct" for a 1-based month number
