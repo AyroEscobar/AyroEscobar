@@ -4,7 +4,7 @@
 import { readFileSync } from 'node:fs';
 
 const atlases = new Map();
-const PREFIX = { 'instrument-serif-italic-400': 's', 'inter-600': 'b', 'inter-400': 'r' };
+const PREFIX = { 'inter-700': 'h', 'inter-600': 'b', 'inter-400': 'r' };
 
 export function atlas(font) {
   if (!atlases.has(font)) {

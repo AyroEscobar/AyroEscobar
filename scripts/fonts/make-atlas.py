@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
 """Build the glyph atlases the SVG generator uses.
 
-Run once, offline, whenever the fonts change. The JSON it writes is committed and is the
+Run once, offline, whenever the fonts change.
+
+Why Inter and not Mona Sans (the face ayroescobar.com sets its words in): Mona Sans's OFL
+notice declares the Reserved Font Name "Mona Sans", and an outline atlas is a modified
+version of the font, so the guard below refuses it. Inter carries no reserved name and sits
+close to Mona Sans at these sizes. The hero JPEGs do use Mona Sans, as a font a browser
+renders into pixels at build time; no font data ships in those files. The JSON it writes is committed and is the
 only font data the generator (and the Action) ever reads, so no font file ships in the repo
 and nothing is embedded with @font-face.
 
   python3 scripts/fonts/make-atlas.py [--cache DIR]
 
-It downloads InstrumentSerif-Italic.ttf and Inter[opsz,wght].ttf from github.com/google/fonts
-(ofl/instrumentserif, ofl/inter; SIL OFL 1.1, no Reserved Font Name), pins the variable one to
-a single weight and optical size with fontTools' instancer, and writes, per glyph in printable
-ASCII plus the middle dot (U+00B7) and the curly quotes (U+2018, U+2019, U+201C, U+201D): its
+It downloads Inter[opsz,wght].ttf from github.com/google/fonts (ofl/inter; SIL OFL 1.1, no
+Reserved Font Name), pins it to three weight and optical-size instances with fontTools'
+instancer, and writes, per glyph in printable ASCII plus the middle dot (U+00B7), the curly
+quotes (U+2018, U+2019, U+201C, U+201D) and the up-right arrow (U+2197): its
 outline as a compact SVG path at 1000 units per em with y pointing down and the baseline at
 0, and its advance width. Pair kerning from the font's GPOS 'kern' feature is flattened into
 a lookup table for the same glyphs.
@@ -30,22 +36,22 @@ from fontTools.varLib import instancer
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = "https://raw.githubusercontent.com/google/fonts/main/ofl"
 TARGET_UPM = 1000
-CHARS = [chr(c) for c in range(0x20, 0x7F)] + ["·", "\u2018", "\u2019", "\u201c", "\u201d"]
+CHARS = [chr(c) for c in range(0x20, 0x7F)] + ["·", "\u2018", "\u2019", "\u201c", "\u201d", "\u2197"]
 
 FONTS = [
     {
-        # his voice: the sentence, the lowercase personal lines, section words
-        "out": "instrument-serif-italic-400.json",
-        "family": "Instrument Serif Italic",
-        "file": "InstrumentSerif-Italic.ttf",
-        "url": f"{BASE}/instrumentserif/InstrumentSerif-Italic.ttf",
-        "ofl_url": f"{BASE}/instrumentserif/OFL.txt",
-        "ofl_out": "OFL-InstrumentSerif.txt",
-        "axes": None,  # a static font
-        "weight": 400,
+        # names: the display cut at optical size 32, tight at 60 units and up
+        "out": "inter-700.json",
+        "family": "Inter",
+        "file": "Inter[opsz,wght].ttf",
+        "url": f"{BASE}/inter/Inter%5Bopsz,wght%5D.ttf",
+        "ofl_url": f"{BASE}/inter/OFL.txt",
+        "ofl_out": "OFL-Inter.txt",
+        "axes": {"wght": 700, "opsz": 32},
+        "weight": 700,
     },
     {
-        # names, roles, numbers: optical size 24 keeps the 600 tight at panel size
+        # org names, headlines, eyebrows: optical size 24 keeps the 600 tight at panel size
         "out": "inter-600.json",
         "family": "Inter",
         "file": "Inter[opsz,wght].ttf",
