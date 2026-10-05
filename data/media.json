@@ -1,0 +1,45 @@
+{
+  "files": {
+    "assets/hero-dark.jpg": {
+      "bytes": 253222,
+      "width": 2560,
+      "height": 1280,
+      "quality": 92,
+      "sha256": "29ffb1981715e05a43d4456025f3ac6308f7e8b1a9be2e3311ef0cbbbf2641d6",
+      "frame": {
+        "t": 2.3,
+        "p": 0,
+        "view": {
+          "w": 1520,
+          "h": 640
+        },
+        "crop": {
+          "x": 0,
+          "y": 0
+        },
+        "tier": "full"
+      }
+    },
+    "assets/hero-light.jpg": {
+      "bytes": 211553,
+      "width": 2560,
+      "height": 1280,
+      "quality": 92,
+      "sha256": "fe4c3006f755863df0400eaad9a2162afbdc4da743f1695af0506fd936bb6345",
+      "frame": {
+        "t": 2.3,
+        "p": 1,
+        "view": {
+          "w": 1600,
+          "h": 800
+        },
+        "crop": {
+          "x": 120,
+          "y": 70
+        },
+        "tier": "full"
+      }
+    }
+  },
+  "note": "Written by scripts/render-scene.mjs; checked by scripts/check.mjs. Do not edit by hand."
+}

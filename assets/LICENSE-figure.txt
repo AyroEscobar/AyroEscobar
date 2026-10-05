@@ -1,0 +1,14 @@
+hero-dark.jpg and hero-light.jpg are frames of the three.js scene on ayroescobar.com,
+rendered by scripts/render-scene.mjs. The man pushing the boulder in them is built from:
+
+Source: "Male base" by Артур Мигранов, on Poly Pizza
+  https://poly.pizza/m/eWGDnQ0jzmH
+License: Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+  https://creativecommons.org/licenses/by/3.0/
+
+Changes made for the site: the mesh was welded, scaled to 1.80 m, simplified with
+meshoptimizer, auto-rigged with 21 joints and skinned, quantized and meshopt-compressed into
+one GLB. The pose and the push cycle are solved at runtime on that rig. The material is the
+site's own (dark clearcoat with a neon edge). The mesh file itself is not in this repo.
+
+Credit, as shown at the foot of README.md: 3D figure: Male base by Артур Мигранов, CC BY 3.0.
