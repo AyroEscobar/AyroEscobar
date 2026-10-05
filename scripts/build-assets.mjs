@@ -35,7 +35,7 @@ export function staticFiles(profile) {
     files.push([`route-${theme}.svg`, route(profile, theme)]);
     for (const v of profile.ventures) files.push([`ventures/${v.slug}-${theme}.svg`, venture(v, theme)]);
     profile.projects.forEach((p, i) => {
-      files.push([`projects/${p.slug}-${theme}.svg`, card(p, theme, i % 2 ? 'right' : 'left')]);
+      files.push([`projects/${p.slug}-${theme}.svg`, card(p, theme, i)]);
     });
   }
   return files;
