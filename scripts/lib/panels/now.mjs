@@ -50,10 +50,13 @@ export function now(profile, theme) {
   const H = x0 + TILE_H + 56;
   const doc = new Doc({ w: W, h: H, pal, title: 'Now', desc: nowAlt(profile) });
 
+  const [yr, mo] = profile.asOf.split('-').map(Number);
+  const stamp = doc.text(fonts.text, `as of ${monthShort(mo)} ${yr}`, { x: W - x0 - 8, y: H - 22, size: type.label, anchor: 'end' });
   field(doc, {
     w: W,
     h: H,
     theme,
+    pools: [{ x: stamp.x - 50, y: H - 70, w: stamp.width + 100, h: 70 }],
     blobs: [
       { c: 'peach', x: 110, y: 70, r: 270 },
       { c: 'butter', x: 430, y: 250, r: 250 },
@@ -97,8 +100,6 @@ export function now(profile, theme) {
     x += tileW + GAP;
   });
 
-  const [yr, mo] = profile.asOf.split('-').map(Number);
-  const stamp = doc.text(fonts.text, `as of ${monthShort(mo)} ${yr}`, { x: W - x0 - 8, y: H - 22, size: type.label, anchor: 'end' });
   doc.add(
     el('g', { fill: pal.ink }, ink.join('')),
     el('g', { fill: pal.ink2 }, ink2.join('') + stamp.markup),
