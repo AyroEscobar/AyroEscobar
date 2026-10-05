@@ -22,9 +22,9 @@ export function pulse(weeks, stamp, theme, alt) {
 
   world(doc, {
     w: W, h: H, theme,
-    horizon: H * 0.62,
-    ridge: { base: H * 0.6, amp: 14, seed: 21 },
-    slope: { y0: H * 1.05, y1: H * 0.72 },
+    horizon: H * 0.98, // the bars stand on the darker upper sky, so they glow in both worlds
+    ridge: { base: H * 0.84, amp: 12, seed: 21 },
+    slope: { y0: H * 1.1, y1: H * 0.86 },
     contours: 2,
     seed: 9,
   });
