@@ -32,15 +32,13 @@ export function ratio(a, b) {
   return (x + 0.05) / (y + 0.05);
 }
 
-// The colour under a piece of text, worst case, for one blob of the field at full strength:
-// the base, the blob at its centre alpha, and for glass the backdrop filter (saturate and
-// brightness) and then the least tint that ever sits under text.
-export function composite(pal, blob, surface) {
-  let c = over(rgb(pal.base), rgb(blob.c), blob.a);
-  const onField = ['field', 'display', 'clear'].includes(surface);
-  if (onField) c = over(c, rgb(pal.scrim.c), pal.scrim.a);
-  if (surface === 'field' || surface === 'display') return c;
-  const g = pal.glass[surface];
+// The colour under a piece of text, worst case, for one tone of the world at full strength:
+// the void, the tone at its alpha, then the glass: the backdrop filter (saturate, brightness),
+// the void scrim under copy, and the least light fill on top of it.
+export function composite(pal, tone) {
+  const g = pal.glass;
+  let c = over(rgb(pal.void), rgb(tone.c), tone.a);
   c = brighten(saturate(c, g.saturate), g.bright);
-  return over(c, rgb(g.tint ?? pal.glass.tint), g.floor);
+  c = over(c, rgb(pal.void), g.scrim);
+  return over(c, [255, 255, 255], g.fillMin);
 }

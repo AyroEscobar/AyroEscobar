@@ -1,139 +1,96 @@
-// Design tokens: the only place a colour, a type size, a glass value or a motion duration
-// lives. Mirrors v2 of ayroescobar.com (DESIGN.md section 2): a warm, bright Plano-noon
-// light field behind clear and thick glass. Light is the default and the README's <img>
-// fallback. Dark is the same page at night: a deep violet base whose light field glows,
-// never flat navy.
+// Design tokens: the only place a colour, a type size or a glass value lives. Mirrors v3 of
+// ayroescobar.com (the boulder, DESIGN.md section 2): two hues and white on a night mountain.
+// GitHub's dark theme gets the night (the hero frame at p = 0); its light theme gets the same
+// world above the weather (the end frame at p = 1, the sky's lower third gone cold and pale).
+// The glass is the site's thick glass in both: a light fill, a 62% void scrim under copy, the
+// rim lit cyan-white on the side facing the rock. So white type works in both themes.
+
+const shared = {
+  ink: '#F6FBFF', // names, headings
+  ink2: '#DFE6F3', // roles, body lines
+  ink3: '#C3CEDD', // dates and the sync stamp, only on the scrim
+  accent: '#19E6FF', // cyan: eyebrows, domains, what is now
+  magenta: '#FF3DBB', // the scene and the rim only, never text
+  void: '#05060D',
+  shadow: '#000000',
+};
 
 export const palettes = {
-  light: {
-    base: '#FBF9F4', // never pure white
-    ink: '#15120E', // names, the sentence
-    ink2: '#3E3932', // roles, body lines
-    ink3: '#4F4941', // dates, meta, captions (only on glass)
-    accent: '#1A44C0', // what is now, links
-    lamp: { green: '#16A34A', amber: '#E0A100', red: '#E5484D', off: '#B9B2A6' },
-    shadow: '#3C2D14', // warm shadow ink (60 45 20)
-    rimDark: '#463C28', // the dark segments of the rim
-    grid: '#15120E', // the hero's structure layer
-    // a soft pool painted into the field under text that sits straight on it; light needs none
-    scrim: { c: '#FBF9F4', a: 0 },
-    // the light field: radial blobs, each colour at `a` in the centre, fading out
-    field: {
-      peach: { c: '#FFAE85', a: 0.9 },
-      butter: { c: '#FFDE6B', a: 0.9 },
-      sky: { c: '#8CCBFF', a: 0.9 },
-      lilac: { c: '#BCA8FF', a: 0.9 },
-      rose: { c: '#FF9FBC', a: 0.75 },
-      mint: { c: '#93E4C0', a: 0.85 },
-      core: { c: '#FF9C6E', a: 0.55 },
-    },
-    // glass over the field. fill: white tint stops along the 155 degree diagonal. scrim: the
-    // soft pool of tint painted under copy. floor: the least tint that ever sits under text
-    // (fill plus scrim); the composite contrast check uses it.
-    glass: {
-      tint: '#FFFFFF',
-      sheet: { fill: [0.3, 0.1, 0.05, 0.18], blur: 16, saturate: 1.7, bright: 1.05, floor: 0.16, scrim: 0.14 },
-      clear: { fill: [0.1, 0.03, 0.02, 0.08], blur: 0.35, saturate: 1.4, bright: 1.04, floor: 0.02, scrim: 0 },
-      pill: { fill: [0.62, 0.34, 0.26, 0.44], blur: 10, saturate: 1.6, bright: 1.05, floor: 0.4, scrim: 0.16 },
-      rim: 0.95, // peak rim opacity
-      sheen: 0.55,
-      streak: 0.34,
-      shadow: 0.24,
-      iris: ['#FFE1CC', '#D2E7FF'], // the rim's faint iridescence: field hues at low chroma
-      caustic: '#FFF4DA',
-    },
-  },
   dark: {
-    base: '#2A1F3F', // deep violet, oklch(0.24 0.055 310)
-    ink: '#F4F0FF',
-    ink2: '#D8D2EA',
-    ink3: '#C4BDD8',
-    accent: '#B3C7FF',
-    lamp: { green: '#4ADE80', amber: '#FFC53D', red: '#FF6B6B', off: '#5A4E73' },
-    shadow: '#05030F',
-    rimDark: '#000000',
-    grid: '#F4F0FF',
-    // at night the blobs glow brighter than white text can stand on, so the field carries a
-    // soft violet pool under the masthead and the sentence (the lens sees it too)
-    scrim: { c: '#2A1F3F', a: 0.44 },
+    ...shared,
+    world: {
+      zenith: '#05070F',
+      horizon: '#143852', // the sky's horizon band
+      glowA: '#0E7A8F', // the city-side glow in the sky
+      ridge: '#0C2236', // the far ridge: lighter than the slope, darker than the sky
+      slope: '#1C2231', // wet stone
+      slopeLow: '#121725',
+      contour: '#1FD2EE', // hairlines on the slope
+      contourA: 0.3,
+      stars: 0.75,
+    },
+    // what can sit under text at full strength, for the contrast check
     field: {
-      // warm hues on violet go brown, so night leans pink, blue and violet
-      peach: { c: '#FF7E8E', a: 0.6 },
-      butter: { c: '#F59BFF', a: 0.42 }, // orchid: yellow on violet reads as mud
-      sky: { c: '#3FB8FF', a: 0.62 },
-      lilac: { c: '#A77BFF', a: 0.78 },
-      rose: { c: '#FF5FCB', a: 0.58 },
-      mint: { c: '#2FD39A', a: 0.5 },
-      core: { c: '#FF6F9C', a: 0.5 },
+      horizon: { c: '#143852', a: 1 },
+      glowA: { c: '#0E7A8F', a: 1 },
+      rock: { c: '#19E6FF', a: 0.42 }, // the rock's light leaking into a panel
+      rim: { c: '#FF3DBB', a: 0.34 },
     },
-    // dark glass is a dimming tint with white rims (DESIGN.md 2.2), so white text keeps its
-    // contrast over the brightest blob
-    glass: {
-      tint: '#181030',
-      sheet: { fill: [0.52, 0.46, 0.44, 0.5], blur: 16, saturate: 1.5, bright: 0.92, floor: 0.5, scrim: 0.22 },
-      clear: { tint: '#FFFFFF', fill: [0.1, 0.04, 0.03, 0.08], blur: 0.35, saturate: 1.3, bright: 1.02, floor: 0.03, scrim: 0 }, // the lens glows at night
-      pill: { fill: [0.5, 0.44, 0.42, 0.48], blur: 10, saturate: 1.5, bright: 0.95, floor: 0.44, scrim: 0.16 },
-      rim: 0.6,
-      sheen: 0.16,
-      streak: 0.12,
-      shadow: 0.55,
-      iris: ['#FFD0E8', '#C9DCFF'],
-      caustic: '#FFE9C7',
+    glass: { blur: 14, saturate: 1.9, bright: 1.07, fill: [0.1, 0.06, 0.06, 0.07], fillMin: 0.06, scrim: 0.62, rim: 0.95 },
+  },
+  light: {
+    ...shared,
+    world: {
+      zenith: '#3F6C84',
+      horizon: '#A9D8F0', // the cold band above the weather (no warm term, ever)
+      glowA: '#7FB4CC',
+      ridge: '#4A6886',
+      slope: '#2A3A62',
+      slopeLow: '#202D50',
+      contour: '#DDF2FF', // the contours whiten above the weather
+      contourA: 0.42,
+      stars: 0.3,
     },
+    field: {
+      horizon: { c: '#A9D8F0', a: 1 },
+      glowA: { c: '#7FB4CC', a: 1 },
+      rock: { c: '#19E6FF', a: 0.36 },
+      rim: { c: '#FF3DBB', a: 0.26 },
+    },
+    glass: { blur: 14, saturate: 1.9, bright: 1.07, fill: [0.1, 0.06, 0.06, 0.07], fillMin: 0.06, scrim: 0.7, rim: 0.95 }, // the site raises --scrim to .70 above the weather
   },
 };
 
-export const themes = Object.keys(palettes);
+export const themes = ['dark', 'light'];
 
-// Which text token may sit on which surface, and the ratio it needs there, so the contrast
-// check knows the composite. field: small text straight on the field (over its scrim).
-// display: the sentence, large text on the field. clear: the sentence under the lens. sheet
-// and pill: on thick glass.
+// Which text token may sit on the glass scrim and the ratio it needs there. All copy in the
+// panels sits on the scrim (the void pool under copy); none stands on the open world.
 export const textOn = {
-  field: { need: 4.5, tokens: ['ink', 'ink2'] },
-  display: { need: 3, tokens: ['ink'] },
-  clear: { need: 3, tokens: ['ink'] },
-  sheet: { need: 4.5, tokens: ['ink', 'ink2', 'ink3', 'accent'] },
-  pill: { need: 4.5, tokens: ['ink', 'accent'] },
+  scrim: { need: 4.5, tokens: ['ink', 'ink2', 'ink3', 'accent'] },
 };
 
 // Type sizes in SVG units. The GitHub profile column is 846 px on a desktop and 308 px on a
-// 390 phone, so an 880-unit panel shows at 0.96 and 0.35, and a 442-unit card at 49.9% at
-// 0.96 and 0.35 too. 28 units is the floor for anything that must be read (about 10 px on the
-// phone); the sentence at 60 units is about 21 px there.
+// 390 phone, so an 880-unit panel shows at 0.96 and 0.35. 28 units is the floor for anything
+// that must be read (about 10 px on the phone).
 export const type = {
-  heroName: 40,
-  heroLine: 28,
-  sentence: 60,
-  sentenceLead: 60, // line pitch of the sentence (0.98 of 60, rounded up for the lens)
-  sectionWord: 48, // "now", "route": the section word in the italic serif
+  eyebrow: 28,
+  cardName: 64,
+  cardTag: 38,
+  cardBlurb: 30,
+  domain: 28,
   rowOrg: 36,
-  rowRole: 30,
-  label: 28,
-  ventureName: 64,
-  ventureTag: 38,
-  ventureLine: 30,
-  cardTitle: 44,
-  cardLine: 36,
-  cardMeta: 28,
-  routeOrg: 34,
-  routeLine: 28,
-  pulseLine: 30,
+  rowLine: 28,
+  pulseLine: 28,
 };
 
 export const frame = {
   radius: 32, // the panel's outer corner
-  inset: 12, // field visible around a glass sheet
-  inner: 20, // a sheet's corner: concentric with the panel (32 = 20 + 12)
-  pad: 28, // text inside a sheet
-};
-
-export const motion = {
-  lensSeconds: 16, // the lens reads the sentence: four lines down and back
+  inset: 12, // world visible around a glass sheet
+  inner: 22, // a sheet's corner (the site's --r-panel)
 };
 
 export const fonts = {
-  display: 'instrument-serif-italic-400', // his voice
-  sans: 'inter-600', // names, titles
-  text: 'inter-400', // roles, dates, meta
+  display: 'inter-700', // names
+  sans: 'inter-600', // orgs, headlines, eyebrows
+  text: 'inter-400', // roles, dates, body
 };
