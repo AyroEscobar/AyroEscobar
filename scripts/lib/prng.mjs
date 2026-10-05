@@ -1,4 +1,4 @@
-// Seeded randomness for the hero grid, so every build is byte-identical.
+// Seeded randomness for the panels (ridge lines, stars), so every build is byte-identical.
 // xmur3 turns a seed string into a 32-bit state; mulberry32 is the generator.
 
 function xmur3(str) {
