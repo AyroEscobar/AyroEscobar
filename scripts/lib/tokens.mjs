@@ -27,14 +27,14 @@ export const palettes = {
       mint: { c: '#93E4C0', a: 0.85 },
       core: { c: '#FF9C6E', a: 0.55 },
     },
-    // glass over the field. fill: white tint stops along the 155 degree diagonal.
-    // floor: the least white that ever sits under text (tint plus the local scrim); the
-    // composite contrast check uses it.
+    // glass over the field. fill: white tint stops along the 155 degree diagonal. scrim: the
+    // soft pool of tint painted under copy. floor: the least tint that ever sits under text
+    // (fill plus scrim); the composite contrast check uses it.
     glass: {
       tint: '#FFFFFF',
-      sheet: { fill: [0.3, 0.1, 0.05, 0.18], blur: 16, saturate: 1.7, bright: 1.05, floor: 0.16 },
-      clear: { fill: [0.1, 0.03, 0.02, 0.08], blur: 0.35, saturate: 1.4, bright: 1.04, floor: 0.02 },
-      pill: { fill: [0.62, 0.34, 0.26, 0.44], blur: 10, saturate: 1.6, bright: 1.05, floor: 0.4 },
+      sheet: { fill: [0.3, 0.1, 0.05, 0.18], blur: 16, saturate: 1.7, bright: 1.05, floor: 0.16, scrim: 0.14 },
+      clear: { fill: [0.1, 0.03, 0.02, 0.08], blur: 0.35, saturate: 1.4, bright: 1.04, floor: 0.02, scrim: 0 },
+      pill: { fill: [0.62, 0.34, 0.26, 0.44], blur: 10, saturate: 1.6, bright: 1.05, floor: 0.4, scrim: 0.16 },
       rim: 0.95, // peak rim opacity
       sheen: 0.55,
       streak: 0.34,
@@ -70,9 +70,9 @@ export const palettes = {
     // contrast over the brightest blob
     glass: {
       tint: '#181030',
-      sheet: { fill: [0.52, 0.46, 0.44, 0.5], blur: 16, saturate: 1.5, bright: 0.92, floor: 0.46 },
-      clear: { tint: '#FFFFFF', fill: [0.14, 0.05, 0.04, 0.1], blur: 0.35, saturate: 1.3, bright: 1.08, floor: 0.04 }, // the lens glows at night
-      pill: { fill: [0.5, 0.44, 0.42, 0.48], blur: 10, saturate: 1.5, bright: 0.95, floor: 0.44 },
+      sheet: { fill: [0.52, 0.46, 0.44, 0.5], blur: 16, saturate: 1.5, bright: 0.92, floor: 0.5, scrim: 0.22 },
+      clear: { tint: '#FFFFFF', fill: [0.1, 0.04, 0.03, 0.08], blur: 0.35, saturate: 1.3, bright: 1.02, floor: 0.03, scrim: 0 }, // the lens glows at night
+      pill: { fill: [0.5, 0.44, 0.42, 0.48], blur: 10, saturate: 1.5, bright: 0.95, floor: 0.44, scrim: 0.16 },
       rim: 0.6,
       sheen: 0.16,
       streak: 0.12,

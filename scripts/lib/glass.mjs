@@ -177,9 +177,9 @@ export function glass(doc, { id, x, y, w, h, r, kind = 'sheet', theme, field: fi
   doc.defs.push(
     angled(doc.id(`${id}-t`), box, 155, spec.fill.map((a, i) => [STOPS[i], t, a])),
     el('linearGradient', { id: doc.id(`${id}-lb`), gradientUnits: 'userSpaceOnUse', x1: 0, y1: y + h * 0.55, x2: 0, y2: y + h },
-      el('stop', { offset: 0, 'stop-color': '#fff', 'stop-opacity': 0 }) + el('stop', { offset: 1, 'stop-color': '#fff', 'stop-opacity': light ? 0.42 : 0.12 })),
+      el('stop', { offset: 0, 'stop-color': '#fff', 'stop-opacity': 0 }) + el('stop', { offset: 1, 'stop-color': '#fff', 'stop-opacity': light ? 0.42 : 0.05 })),
     el('linearGradient', { id: doc.id(`${id}-lr`), gradientUnits: 'userSpaceOnUse', x1: x + w - Math.min(90, w * 0.25), y1: 0, x2: x + w, y2: 0 },
-      el('stop', { offset: 0, 'stop-color': '#fff', 'stop-opacity': 0 }) + el('stop', { offset: 1, 'stop-color': '#fff', 'stop-opacity': light ? 0.28 : 0.08 })),
+      el('stop', { offset: 0, 'stop-color': '#fff', 'stop-opacity': 0 }) + el('stop', { offset: 1, 'stop-color': '#fff', 'stop-opacity': light ? 0.28 : 0.04 })),
     kind === 'clear'
       ? // a rod: a bright band along the top that falls off fast, then clear glass
         el('linearGradient', { id: doc.id(`${id}-sh`), gradientUnits: 'userSpaceOnUse', x1: 0, y1: y, x2: 0, y2: y + h },
@@ -208,7 +208,7 @@ export function glass(doc, { id, x, y, w, h, r, kind = 'sheet', theme, field: fi
   layers += el('g', { 'clip-path': `url(#${id}-c)`, opacity: light ? 0.5 : 0.35 }, el('rect', { ...rect, filter: 'url(#grain)' }));
   if (scrims.length) {
     doc.shared('scrim-blur', blurFilter('scrim-blur', 22));
-    const a = Math.max(0, spec.floor - Math.min(...spec.fill)) * 1.15;
+    const a = spec.scrim;
     layers += el('g', { 'clip-path': `url(#${id}-c)` },
       el('g', { fill: t, 'fill-opacity': Math.round(a * 100) / 100, filter: 'url(#scrim-blur)' },
         scrims.map((s) => el('rect', { x: s.x, y: s.y, width: s.w, height: s.h, rx: Math.min(s.h / 2, 30) })).join('')));
