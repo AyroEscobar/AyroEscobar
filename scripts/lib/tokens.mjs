@@ -8,9 +8,9 @@ export const palettes = {
   light: {
     base: '#FBF9F4', // never pure white
     ink: '#15120E', // names, the sentence
-    ink2: '#4A443C', // roles, body lines
-    ink3: '#5E574D', // dates, meta, captions (only on glass, where the scrim lifts it)
-    accent: '#1E4FD8', // what is now, links
+    ink2: '#3E3932', // roles, body lines
+    ink3: '#4F4941', // dates, meta, captions (only on glass)
+    accent: '#1A44C0', // what is now, links
     lamp: { green: '#16A34A', amber: '#E0A100', red: '#E5484D', off: '#B9B2A6' },
     shadow: '#3C2D14', // warm shadow ink (60 45 20)
     rimDark: '#463C28', // the dark segments of the rim
@@ -32,7 +32,7 @@ export const palettes = {
     // composite contrast check uses it.
     glass: {
       tint: '#FFFFFF',
-      sheet: { fill: [0.5, 0.22, 0.14, 0.3], blur: 16, saturate: 1.7, bright: 1.05, floor: 0.42 },
+      sheet: { fill: [0.3, 0.1, 0.05, 0.18], blur: 16, saturate: 1.7, bright: 1.05, floor: 0.16 },
       clear: { fill: [0.1, 0.03, 0.02, 0.08], blur: 0.35, saturate: 1.4, bright: 1.04, floor: 0.02 },
       pill: { fill: [0.62, 0.34, 0.26, 0.44], blur: 10, saturate: 1.6, bright: 1.05, floor: 0.4 },
       rim: 0.95, // peak rim opacity
