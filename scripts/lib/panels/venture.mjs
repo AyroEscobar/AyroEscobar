@@ -1,68 +1,96 @@
-// Venture plate: one per entry in profile.ventures. The name with the role beside it, a seam,
-// then the product's own words at full width, and the two position lights an aircraft flies with.
-// The plate grows to fit its entry, so adding a venture to profile.json needs no code change.
-import { palettes, type, fonts } from '../tokens.mjs';
-import { Doc, el, panelBase, panelFrame } from '../svg.mjs';
+// Venture plate: one per entry in profile.ventures. A glass sheet with the name, the role, the
+// product's own words and its domain. Under the glass sit three status lamps in viaere.com's
+// own words (green, amber, red); their light is part of the field, so the glass diffuses it,
+// and each lamp keeps a crisp bead on top so it reads at phone size. A fourth lamp is drawn dim,
+// unlabeled and set apart (the fourth tier is not named publicly). The plate grows to fit its
+// entry, so adding a venture to profile.json needs no code change.
+import { palettes, type, fonts, frame } from '../tokens.mjs';
+import { Doc, el } from '../svg.mjs';
+import { field, drawField, glass, panelEdge } from '../glass.mjs';
 import { measure, wrap } from '../text.mjs';
 
 const W = 880;
-const LEFT = 48;
-const RIGHT = 844;
-const NAME_Y = 104; // name baseline; the role sits on it when there is room
-const LH = 44; // line height for the 36-unit lines
-const GAP = 8; // between the tagline and the description
-const cap = (size) => size * 0.7; // Overpass and Overpass Mono capitals are 700/1000
+const LEFT = 56;
+const RIGHT = 824;
+const NAME_Y = 100;
+const LAMPS = ['green', 'amber', 'red'];
+const curly = (s) => s.replace(/(\w)'(\w)/g, '$1’$2');
 
 export function venture(v, theme) {
   const pal = palettes[theme];
   const width = RIGHT - LEFT;
-  const nameSize = Math.min(type.ventureName, Math.floor(width / measure(fonts.display, v.name, 1)));
-  if (nameSize < 40) throw new Error(`venture: name "${v.name}" does not fit the plate`);
-  const nameW = measure(fonts.display, v.name, nameSize);
-  // the role rides on the name's baseline when it fits beside it, otherwise it drops under it
-  const besideX = LEFT + nameW + 28;
-  const beside = besideX + measure(fonts.mono, v.role, type.ventureLine) <= RIGHT;
-  const roleLines = beside ? [v.role] : wrap(fonts.mono, v.role, type.ventureLine, width);
-  const roleYs = roleLines.map((_, i) => (beside ? NAME_Y : NAME_Y + LH + i * LH));
-  const seamY = roleYs[roleYs.length - 1] + 24;
-  const tag = wrap(fonts.mono, v.tagline, type.ventureLine, width);
-  const desc = wrap(fonts.mono, v.line, type.ventureLine, width);
-  const tagYs = tag.map((_, i) => seamY + 24 + cap(type.ventureLine) + i * LH);
-  const descYs = desc.map((_, i) => tagYs[tagYs.length - 1] + LH + GAP + i * LH);
-  const H = Math.ceil(descYs[descYs.length - 1] + 30);
-
+  const nameW = measure(fonts.sans, v.name, type.ventureName);
+  const besideX = LEFT + nameW + 26;
+  const domain = measure(fonts.text, v.domain, type.label);
+  const beside = besideX + measure(fonts.text, v.role, type.ventureLine) <= RIGHT - domain - 32;
+  const roleLines = beside ? [v.role] : wrap(fonts.text, v.role, type.ventureLine, width);
+  const roleYs = roleLines.map((_, i) => (beside ? NAME_Y : NAME_Y + 42 + i * 40));
+  const tag = wrap(fonts.display, curly(v.tagline), type.ventureTag, width);
+  const tagYs = tag.map((_, i) => roleYs[roleYs.length - 1] + 64 + i * 46);
+  const desc = wrap(fonts.text, v.line, type.ventureLine, width);
+  const descYs = desc.map((_, i) => tagYs[tagYs.length - 1] + 46 + i * 40);
+  const lampY = descYs[descYs.length - 1] + 62; // lamp centres
+  const H = Math.ceil(lampY + 36 + frame.inset + 8);
   const doc = new Doc({ w: W, h: H, pal, title: v.name, desc: v.alt });
-  panelBase(doc, { bg: 'deck' });
-  const run = (font, str, x, y, size) => doc.text(font, str, { x, y, size }).markup;
 
+  // the lamp row: bead, label, bead, label, bead, label, then the unnamed fourth set apart
+  const lamps = [];
+  let x = LEFT + 12;
+  for (const name of LAMPS) {
+    const label = doc.text(fonts.text, name, { x: x + 24, y: lampY + 10, size: type.label });
+    lamps.push({ name, cx: x, label });
+    x = label.end + 44;
+  }
+  const fourth = x + 28;
+  if (fourth > RIGHT) throw new Error('venture: the lamp row does not fit');
+
+  const glow = { green: 'mint', amber: 'butter', red: 'rose' };
+  field(doc, {
+    w: W,
+    h: H,
+    theme,
+    blobs: [
+      { c: 'butter', x: 520, y: -20, r: 300, k: 0.8 },
+      { c: 'sky', x: 860, y: 120, r: 280 },
+      { c: 'peach', x: 80, y: 40, r: 240, k: 0.8 },
+      // the lamps' light, under the glass
+      ...lamps.map((l) => ({ c: glow[l.name], x: l.cx, y: lampY, r: 150, k: 1.1 })),
+    ],
+  });
+  doc.add(drawField(doc, { w: W, h: H, r: frame.radius }));
+
+  const i = frame.inset;
+  const sheet = glass(doc, {
+    id: 's', x: i, y: i, w: W - 2 * i, h: H - 2 * i, r: frame.inner, kind: 'sheet', theme,
+    scrims: [{ x: LEFT - 20, y: 36, w: width + 40, h: lampY + 24 - 36 }],
+  });
+  doc.add(sheet.markup);
+
+  const run = (font, str, x0, y, size, opts = {}) => doc.text(font, str, { x: x0, y, size, ...opts }).markup;
+  const dom = doc.text(fonts.text, v.domain, { x: RIGHT, y: 66, size: type.label, anchor: 'end' });
   doc.add(
-    el('path', { d: `M${LEFT} ${seamY}H${RIGHT}`, stroke: pal.traceLit, 'stroke-opacity': 0.7, fill: 'none' }),
-    el(
-      'g',
-      { fill: pal.ink },
-      run(fonts.display, v.name, LEFT, NAME_Y, nameSize) + tag.map((l, i) => run(fonts.mono, l, LEFT, tagYs[i], type.ventureLine)).join(''),
-    ),
-    el(
-      'g',
-      { fill: pal.dim },
-      roleLines.map((l, i) => run(fonts.mono, l, beside ? besideX : LEFT, roleYs[i], type.ventureLine)).join('') +
-        desc.map((l, i) => run(fonts.mono, l, LEFT, descYs[i], type.ventureLine)).join(''),
-    ),
+    el('g', { fill: pal.ink },
+      run(fonts.sans, v.name, LEFT, NAME_Y, type.ventureName, { tracking: -0.015 }) +
+        tag.map((l, k) => run(fonts.display, l, LEFT, tagYs[k], type.ventureTag)).join('')),
+    el('g', { fill: pal.ink2 },
+      roleLines.map((l, k) => run(fonts.text, l, beside ? besideX : LEFT, roleYs[k], type.ventureLine)).join('') +
+        desc.map((l, k) => run(fonts.text, l, LEFT, descYs[k], type.ventureLine)).join('') +
+        lamps.map((l) => l.label.markup).join('')),
+    el('g', { fill: pal.accent }, dom.markup),
   );
 
-  // the domain, top right
-  const dom = doc.text(fonts.mono, v.domain, { x: RIGHT, y: 40, size: type.label, anchor: 'end' });
-  doc.add(el('g', { fill: pal.sodium }, dom.markup));
-  panelFrame(doc);
-
-  // Position lights where an aircraft carries them, as if the plate were a wing seen from
-  // above: red port on the left edge, green starboard on the right, each a lens set into the
-  // frame line with a little light spilling onto the plate.
-  for (const [cx, fill] of [[0.5, pal.beacon], [W - 0.5, pal.green]]) {
+  // crisp beads on the glass: a lit core with a bright rim and a pinpoint highlight
+  for (const l of lamps) {
+    const c = pal.lamp[l.name];
     doc.add(
-      el('circle', { cx, cy: H / 2, r: 16, fill, 'fill-opacity': 0.12 }),
-      el('rect', { x: cx - 4, y: H / 2 - 11, width: 8, height: 22, rx: 4, fill }),
+      el('circle', { cx: l.cx, cy: lampY, r: 13, fill: c, 'fill-opacity': 0.22 }),
+      el('circle', { cx: l.cx, cy: lampY, r: 8.5, fill: c }),
+      el('circle', { cx: l.cx - 2.6, cy: lampY - 2.8, r: 2.6, fill: '#fff', 'fill-opacity': 0.75 }),
     );
   }
+  doc.add(
+    el('circle', { cx: fourth, cy: lampY, r: 8.5, fill: 'none', stroke: pal.lamp.off, 'stroke-width': 2 }),
+    panelEdge(doc, { w: W, h: H, r: frame.radius, theme }),
+  );
   return doc.render();
 }
