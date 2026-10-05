@@ -149,13 +149,20 @@ export function glass(doc, { id, x, y, w, h, r, kind = 'sheet', theme, field: fi
         el('feComponentTransfer', {}, ['R', 'G', 'B'].map((ch) => el(`feFunc${ch}`, { type: 'linear', slope: spec.bright })).join(''))),
   );
 
-  // shadow: warm and down-right in daylight, a deeper violet shadow at night
-  const deep = kind === 'clear' ? [8, 18, 16] : kind === 'pill' ? [3, 7, 8] : [6, 14, 18];
+  // shadow: warm and down-right in daylight, a deeper violet shadow at night. The clear lens
+  // floats over the sentence, so at night its shadow is capped and held closer: at full
+  // strength, or dropped 18 units, it lands on the next line and greys the white type there
+  // (measured: 82 percent of line 1 at full strength, 93 at the capped alpha alone, 97 capped
+  // and closer). Sheets and pills keep their depth.
+  const lensAtNight = kind === 'clear' && !light;
+  const deep = lensAtNight ? [8, 10, 12] : kind === 'clear' ? [8, 18, 16] : kind === 'pill' ? [3, 7, 8] : [6, 14, 18];
+  const deepA = lensAtNight ? Math.min(G.shadow, 0.22) : G.shadow;
+  const nearA = light ? 0.08 : lensAtNight ? 0.12 : 0.3;
   doc.shared(`gs-${deep[2]}`, blurFilter(`gs-${deep[2]}`, deep[2]));
   doc.shared('gs-2', blurFilter('gs-2', 2));
   const shadow =
-    el('rect', { ...rect, x: x + deep[0], y: y + deep[1], fill: pal.shadow, 'fill-opacity': G.shadow, filter: `url(#gs-${deep[2]})` }) +
-    el('rect', { ...rect, y: y + 2, fill: pal.shadow, 'fill-opacity': light ? 0.08 : 0.3, filter: 'url(#gs-2)' });
+    el('rect', { ...rect, x: x + deep[0], y: y + deep[1], fill: pal.shadow, 'fill-opacity': deepA, filter: `url(#gs-${deep[2]})` }) +
+    el('rect', { ...rect, y: y + 2, fill: pal.shadow, 'fill-opacity': nearA, filter: 'url(#gs-2)' });
 
   // backdrop: the field again, through the filter, optionally magnified. A caller that moves
   // the surface passes classes for the two inner wrappers so they can counter-move.
