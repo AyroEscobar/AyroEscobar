@@ -16,7 +16,7 @@
 //   SVGs are self-contained: no network, no script, no web fonts ........ svg-safety
 //   every SVG has role="img", <title> and <desc> ......................... svg-a11y
 //   size budget: 60 KB per SVG, 250 KB per theme ........................ size
-//   motion only in the hero, only behind prefers-reduced-motion ......... motion
+//   one motion loop, in the hero only, behind prefers-reduced-motion .. motion
 //   text 4.5:1 (large 3:1) and strokes 3:1 over the worst glass or field
 //   composite each token may sit on, both themes ........................ contrast
 //   every fact in profile.json carries a fact id (public with --facts) .. facts
@@ -132,7 +132,8 @@ for (const [name, svg] of svgs) {
   if (gi >= 0) {
     const inner = style.slice(gi + guard.length);
     const loops = (inner.match(/@keyframes/g) ?? []).length;
-    if (loops > 2) fail('motion', `${name} has ${loops} loops (at most 2)`);
+    // one loop: anything moving inside an <img> redraws the whole filtered panel every frame
+    if (loops > 1) fail('motion', `${name} has ${loops} loops (at most 1, the lens)`);
     for (const kf of inner.matchAll(/@keyframes \w+\{([\s\S]*?\})\}/g)) {
       for (const prop of kf[1].matchAll(/([a-z-]+):/g)) {
         if (!['opacity', 'transform', 'stroke-dashoffset'].includes(prop[1])) fail('motion', `${name} animates ${prop[1]}`);
