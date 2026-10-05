@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Draws every panel of the profile README from data/profile.json. Zero npm dependencies.
+// Draws every SVG panel of the profile README from data/profile.json. Zero npm dependencies.
 //
 //   node scripts/build-assets.mjs                     static panels into assets/ (default)
 //   node scripts/build-assets.mjs --static --out DIR  static panels into DIR instead
@@ -14,11 +14,8 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { themes } from './lib/tokens.mjs';
-import { hero } from './lib/panels/hero.mjs';
-import { now } from './lib/panels/now.mjs';
-import { route } from './lib/panels/route.mjs';
 import { venture } from './lib/panels/venture.mjs';
-import { card } from './lib/panels/card.mjs';
+import { experience } from './lib/panels/experience.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -26,17 +23,13 @@ export function loadProfile(path = join(ROOT, 'data/profile.json')) {
   return JSON.parse(readFileSync(path, 'utf8'));
 }
 
-// Every static file, as [relative path, svg string].
+// Every static SVG, as [relative path, svg string]. The hero is not here: it is a frame of the
+// three.js scene, rendered by scripts/render-scene.mjs and committed as JPEG.
 export function staticFiles(profile) {
   const files = [];
   for (const theme of themes) {
-    files.push([`hero-${theme}.svg`, hero(profile, theme)]);
-    files.push([`now-${theme}.svg`, now(profile, theme)]);
-    files.push([`route-${theme}.svg`, route(profile, theme)]);
-    for (const v of profile.ventures) files.push([`ventures/${v.slug}-${theme}.svg`, venture(v, theme)]);
-    profile.projects.forEach((p, i) => {
-      files.push([`projects/${p.slug}-${theme}.svg`, card(p, theme, i)]);
-    });
+    profile.ventures.forEach((v, i) => files.push([`ventures/${v.slug}-${theme}.svg`, venture(v, theme, i)]));
+    files.push([`experience-${theme}.svg`, experience(profile.experience, theme)]);
   }
   return files;
 }
