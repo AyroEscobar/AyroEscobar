@@ -1,16 +1,19 @@
-// Route rail: his roles as a transit line, earliest stop at the top. Stops that are done glow
-// sodium, stops that are current glow LED. The line keeps going past the last stop.
-import { palettes, type, fonts } from '../tokens.mjs';
-import { Doc, el, fmt, panelBase, panelFrame } from '../svg.mjs';
+// Route: his roles on one glass sheet as a vertical timeline, earliest at the top. A spine runs
+// through every stop and fades out past the last one. Current stops are solid accent beads with
+// a soft halo and their dates in accent; past stops are hollow. Colour is never the only signal:
+// the dates say "to now".
+import { palettes, type, fonts, frame } from '../tokens.mjs';
+import { Doc, el } from '../svg.mjs';
+import { field, drawField, glass, panelEdge } from '../glass.mjs';
 
 const W = 880;
-const LINE_X = 80;
-const TEXT_X = 116;
-const RIGHT = 840;
-const TOP = 64; // first org baseline
-const STEP = 80; // between stops
-const ROLE_DY = 33; // org baseline to role baseline: closer to its own org than to the next
-const DOT_DY = -12; // org baseline to dot centre (middle of the capitals)
+const SPINE_X = 84;
+const TEXT_X = 120;
+const RIGHT = 830;
+const TOP = 82; // first org baseline
+const STEP = 78;
+const ROLE_DY = 36;
+const DOT_DY = -11; // org baseline to bead centre
 
 export function routeAlt(profile) {
   return `Route: ${profile.route.map((s) => `${s.say}.`).join(' ')}`;
@@ -20,78 +23,79 @@ export function route(profile, theme) {
   const pal = palettes[theme];
   const stops = profile.route;
   const lastY = TOP + (stops.length - 1) * STEP;
-  const H = lastY + ROLE_DY + 48;
+  const H = lastY + ROLE_DY + 62;
   const doc = new Doc({ w: W, h: H, pal, title: 'Route', desc: routeAlt(profile) });
 
-  panelBase(doc);
+  field(doc, {
+    w: W,
+    h: H,
+    theme,
+    blobs: [
+      { c: 'sky', x: 80, y: 90, r: 300 },
+      { c: 'lilac', x: 820, y: 60, r: 300 },
+      { c: 'peach', x: 660, y: 300, r: 280 },
+      { c: 'butter', x: 150, y: 380, r: 260, k: 0.85 },
+      { c: 'rose', x: 470, y: H + 20, r: 280 },
+    ],
+  });
+  doc.add(drawField(doc, { w: W, h: H, r: frame.radius }));
+  const i = frame.inset;
+  doc.add(
+    glass(doc, {
+      id: 's', x: i, y: i, w: W - 2 * i, h: H - 2 * i, r: frame.inner, kind: 'sheet', theme,
+      scrims: [{ x: SPINE_X - 30, y: 30, w: RIGHT - SPINE_X + 50, h: H - 60 }],
+    }).markup,
+  );
+
+  // the spine: solid through every stop, then fading out, onto what's next
   const firstDot = TOP + DOT_DY;
   const lastDot = lastY + DOT_DY;
-  // the line: solid through every stop, dashed past the last one
+  doc.defs.push(
+    el('linearGradient', { id: doc.id('fade'), gradientUnits: 'userSpaceOnUse', x1: 0, y1: lastDot, x2: 0, y2: H - 22 },
+      el('stop', { offset: 0, 'stop-color': pal.ink3, 'stop-opacity': 0.55 }) + el('stop', { offset: 1, 'stop-color': pal.ink3, 'stop-opacity': 0 })),
+  );
   doc.add(
-    el('path', { d: `M${LINE_X} 22V${lastDot}`, stroke: pal.traceLit, 'stroke-width': 3, fill: 'none' }),
-    el('path', {
-      d: `M${LINE_X} ${lastDot + 16}V${H - 22}`,
-      stroke: pal.traceLit,
-      'stroke-width': 3,
-      'stroke-dasharray': '3 7',
-      fill: 'none',
-    }),
+    el('path', { d: `M${SPINE_X} ${firstDot - 26}V${lastDot}`, stroke: pal.ink3, 'stroke-opacity': 0.55, 'stroke-width': 2.5, fill: 'none', 'stroke-linecap': 'round' }),
+    el('path', { d: `M${SPINE_X} ${lastDot}V${H - 22}`, stroke: 'url(#fade)', 'stroke-width': 2.5, fill: 'none' }),
   );
 
   const ink = [];
-  const dim = [];
+  const ink2 = [];
+  const ink3 = [];
+  const accent = [];
   stops.forEach((s, k) => {
     const y = TOP + k * STEP;
     const cy = y + DOT_DY;
-    const color = s.state === 'now' ? pal.led : pal.sodiumStroke;
-    if (s.state === 'now') doc.add(el('circle', { cx: LINE_X, cy, r: 14, fill: pal.led, 'fill-opacity': 0.14 }));
-    if (s.branches) {
-      // the desks, as short branches off the stop
-      const n = s.branches;
-      const spread = Math.PI * 0.62;
-      let d = '';
-      let ends = '';
-      for (let i = 0; i < n; i++) {
-        const a = -spread / 2 + (spread * i) / (n - 1);
-        const [c, sn] = [Math.cos(a), Math.sin(a)];
-        const x1 = LINE_X + c * 10;
-        const y1 = cy + sn * 10;
-        const x2 = LINE_X + c * 24;
-        const y2 = cy + sn * 24;
-        d += `M${fmt(x1)} ${fmt(y1)}L${fmt(x2)} ${fmt(y2)}`;
-        ends += el('circle', { cx: x2, cy: y2, r: 1.8 });
-      }
-      doc.add(el('path', { d, stroke: color, 'stroke-width': 1.6, fill: 'none', 'stroke-linecap': 'round' }));
-      doc.add(el('g', { fill: color }, ends));
+    const live = s.state === 'now';
+    if (live) {
+      doc.add(
+        el('circle', { cx: SPINE_X, cy, r: 16, fill: pal.accent, 'fill-opacity': 0.16 }),
+        el('circle', { cx: SPINE_X, cy, r: 8, fill: pal.accent }),
+        el('circle', { cx: SPINE_X - 2.4, cy: cy - 2.6, r: 2.4, fill: '#fff', 'fill-opacity': 0.7 }),
+      );
+    } else {
+      // punched through the spine: a ring with the glass showing inside
+      doc.add(el('circle', { cx: SPINE_X, cy, r: 7.5, fill: theme === 'light' ? '#FFFFFF' : pal.base, 'fill-opacity': 0.9, stroke: pal.ink3, 'stroke-width': 2.5 }));
     }
-    doc.add(el('circle', { cx: LINE_X, cy, r: 10, fill: pal.night }), el('circle', { cx: LINE_X, cy, r: 7, fill: color }));
-
-    const org = doc.text(fonts.display, s.org, { x: TEXT_X, y, size: type.routeOrg });
-    const role = doc.text(fonts.mono, s.role, { x: TEXT_X, y: y + ROLE_DY, size: type.routeLine });
+    const org = doc.text(fonts.sans, s.org, { x: TEXT_X, y, size: type.routeOrg, tracking: -0.01 });
+    const role = doc.text(fonts.text, s.role, { x: TEXT_X, y: y + ROLE_DY, size: type.routeLine });
     if (role.end > RIGHT) throw new Error(`route: "${s.role}" is too wide`);
     // the date sits right of the org; a long org pushes it down to the role line, never smaller
-    let date = doc.text(fonts.mono, s.date, { x: RIGHT, y, size: type.routeLine, anchor: 'end' });
+    let date = doc.text(fonts.text, s.date, { x: RIGHT, y, size: type.routeLine, anchor: 'end' });
     if (org.end + 24 > date.x) {
-      date = doc.text(fonts.mono, s.date, { x: RIGHT, y: y + ROLE_DY, size: type.routeLine, anchor: 'end' });
+      date = doc.text(fonts.text, s.date, { x: RIGHT, y: y + ROLE_DY, size: type.routeLine, anchor: 'end' });
       if (role.end + 24 > date.x) throw new Error(`route: "${s.org}" runs into its date`);
     }
     ink.push(org.markup);
-    dim.push(date.markup, role.markup);
+    ink2.push(role.markup);
+    (live ? accent : ink3).push(date.markup);
   });
-  doc.add(el('g', { fill: pal.ink }, ink.join('')), el('g', { fill: pal.dim }, dim.join('')));
-
-  // legend, bottom right: colour is never the only signal (the dates say "to now"). Done stops
-  // glow sodium and current ones LED white; the legend says it in plain words.
-  const ly = H - 20;
-  const nowTxt = doc.text(fonts.mono, 'now', { x: RIGHT, y: ly, size: type.label, anchor: 'end' });
-  const nowDot = nowTxt.x - 14;
-  const doneTxt = doc.text(fonts.mono, 'done', { x: nowDot - 26, y: ly, size: type.label, anchor: 'end' });
-  const doneDot = doneTxt.x - 14;
   doc.add(
-    el('circle', { cx: doneDot, cy: ly - 7, r: 5, fill: pal.sodiumStroke }),
-    el('circle', { cx: nowDot, cy: ly - 7, r: 5, fill: pal.led }),
-    el('g', { fill: pal.dim }, doneTxt.markup + nowTxt.markup),
+    el('g', { fill: pal.ink }, ink.join('')),
+    el('g', { fill: pal.ink2 }, ink2.join('')),
+    el('g', { fill: pal.ink3 }, ink3.join('')),
+    el('g', { fill: pal.accent }, accent.join('')),
+    panelEdge(doc, { w: W, h: H, r: frame.radius, theme }),
   );
-  panelFrame(doc);
   return doc.render();
 }
