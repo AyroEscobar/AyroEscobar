@@ -7,12 +7,13 @@ and nothing is embedded with @font-face.
 
   python3 scripts/fonts/make-atlas.py [--cache DIR]
 
-It downloads Overpass[wght].ttf and OverpassMono[wght].ttf from github.com/google/fonts
-(ofl/overpass, ofl/overpassmono; SIL OFL 1.1, no Reserved Font Name), pins each to one
-weight with fontTools' instancer, and writes, per glyph in printable ASCII plus the middle
-dot (U+00B7): its outline as a compact SVG path at 1000 units per em with y pointing down
-and the baseline at 0, and its advance width. Pair kerning from the font's GPOS 'kern'
-feature is flattened into a lookup table for the same glyphs.
+It downloads InstrumentSerif-Italic.ttf and Inter[opsz,wght].ttf from github.com/google/fonts
+(ofl/instrumentserif, ofl/inter; SIL OFL 1.1, no Reserved Font Name), pins the variable one to
+a single weight and optical size with fontTools' instancer, and writes, per glyph in printable
+ASCII plus the middle dot (U+00B7) and the curly quotes (U+2018, U+2019, U+201C, U+201D): its
+outline as a compact SVG path at 1000 units per em with y pointing down and the baseline at
+0, and its advance width. Pair kerning from the font's GPOS 'kern' feature is flattened into
+a lookup table for the same glyphs.
 
 Needs: python3 with fontTools (pip install fonttools).
 """
@@ -29,26 +30,41 @@ from fontTools.varLib import instancer
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = "https://raw.githubusercontent.com/google/fonts/main/ofl"
 TARGET_UPM = 1000
-CHARS = [chr(c) for c in range(0x20, 0x7F)] + ["·"]
+CHARS = [chr(c) for c in range(0x20, 0x7F)] + ["·", "\u2018", "\u2019", "\u201c", "\u201d"]
 
 FONTS = [
     {
-        "out": "overpass-900.json",
-        "family": "Overpass",
-        "file": "Overpass[wght].ttf",
-        "url": f"{BASE}/overpass/Overpass%5Bwght%5D.ttf",
-        "ofl_url": f"{BASE}/overpass/OFL.txt",
-        "ofl_out": "OFL-Overpass.txt",
-        "wght": 900,
+        # his voice: the sentence, the lowercase personal lines, section words
+        "out": "instrument-serif-italic-400.json",
+        "family": "Instrument Serif Italic",
+        "file": "InstrumentSerif-Italic.ttf",
+        "url": f"{BASE}/instrumentserif/InstrumentSerif-Italic.ttf",
+        "ofl_url": f"{BASE}/instrumentserif/OFL.txt",
+        "ofl_out": "OFL-InstrumentSerif.txt",
+        "axes": None,  # a static font
+        "weight": 400,
     },
     {
-        "out": "overpass-mono-500.json",
-        "family": "Overpass Mono",
-        "file": "OverpassMono[wght].ttf",
-        "url": f"{BASE}/overpassmono/OverpassMono%5Bwght%5D.ttf",
-        "ofl_url": f"{BASE}/overpassmono/OFL.txt",
-        "ofl_out": "OFL-OverpassMono.txt",
-        "wght": 500,
+        # names, roles, numbers: optical size 24 keeps the 600 tight at panel size
+        "out": "inter-600.json",
+        "family": "Inter",
+        "file": "Inter[opsz,wght].ttf",
+        "url": f"{BASE}/inter/Inter%5Bopsz,wght%5D.ttf",
+        "ofl_url": f"{BASE}/inter/OFL.txt",
+        "ofl_out": "OFL-Inter.txt",
+        "axes": {"wght": 600, "opsz": 24},
+        "weight": 600,
+    },
+    {
+        # small text: optical size 14, the open text cut, since a phone shows it near 10 px
+        "out": "inter-400.json",
+        "family": "Inter",
+        "file": "Inter[opsz,wght].ttf",
+        "url": f"{BASE}/inter/Inter%5Bopsz,wght%5D.ttf",
+        "ofl_url": f"{BASE}/inter/OFL.txt",
+        "ofl_out": "OFL-Inter.txt",
+        "axes": {"wght": 400, "opsz": 14},
+        "weight": 400,
     },
 ]
 
@@ -181,7 +197,7 @@ def build(spec, cache):
     vf = TTFont(src)
     version = vf["name"].getDebugName(5)
     copyright_ = vf["name"].getDebugName(0)
-    font = instancer.instantiateVariableFont(vf, {"wght": spec["wght"]})
+    font = instancer.instantiateVariableFont(vf, spec["axes"]) if spec["axes"] else vf
     upm = font["head"].unitsPerEm
     scale = TARGET_UPM / upm
     cmap = font.getBestCmap()
@@ -209,7 +225,8 @@ def build(spec, cache):
 
     atlas = {
         "family": spec["family"],
-        "weight": spec["wght"],
+        "weight": spec["weight"],
+        "axes": spec["axes"],
         "version": version,
         "copyright": copyright_,
         "license": f"SIL Open Font License 1.1, no Reserved Font Name. Full notice: scripts/fonts/{spec['ofl_out']}",
