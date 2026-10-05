@@ -74,11 +74,11 @@ export const textOn = {
 // that must be read (about 10 px on the phone).
 export const type = {
   eyebrow: 28,
-  cardName: 64,
-  cardTag: 38,
-  cardBlurb: 30,
+  cardName: 56,
+  cardTag: 34,
+  cardBlurb: 29,
   domain: 28,
-  rowOrg: 36,
+  rowOrg: 34,
   rowLine: 28,
   pulseLine: 28,
 };

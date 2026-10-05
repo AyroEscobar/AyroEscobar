@@ -23,12 +23,12 @@ export function venture(v, theme, index) {
   const blurb = wrap(fonts.text, v.blurb, type.cardBlurb, TEXT_W);
   const domain = `${v.domain} ↗`;
 
-  const eyebrowY = 92;
-  const nameY = eyebrowY + 74;
-  const tagYs = tag.map((_, k) => nameY + 62 + k * 48);
-  const blurbYs = blurb.map((_, k) => tagYs[tagYs.length - 1] + 56 + k * 42);
-  const domainY = blurbYs[blurbYs.length - 1] + 60;
-  const H = Math.ceil(domainY + 56);
+  const eyebrowY = 84;
+  const nameY = eyebrowY + 64;
+  const tagYs = tag.map((_, k) => nameY + 54 + k * 43);
+  const blurbYs = blurb.map((_, k) => tagYs[tagYs.length - 1] + 50 + k * 39);
+  const domainY = blurbYs[blurbYs.length - 1] + 54;
+  const H = Math.ceil(domainY + 48);
   const doc = new Doc({ w: W, h: H, pal, title: v.name, desc: v.alt });
 
   const i = frame.inset;
