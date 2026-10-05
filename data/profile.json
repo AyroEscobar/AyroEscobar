@@ -2,15 +2,16 @@
   "asOf": "2026-10-01",
   "identity": {
     "name": "Ayro Escobar",
-    "line": "software engineer · plano, tx",
+    "line": "software engineer, plano, texas",
+    "sentence": "I am trying to build a life where my family never has to worry about money, and ship a few things that outlast me along the way.",
     "site": "ayroescobar.com",
-    "alt": "Ayro Escobar. Software engineer from Plano, Texas, studying computer science at UT Dallas. Click for ayroescobar.com.",
-    "factIds": ["identity-name", "identity-role", "identity-hometown", "identity-student", "ln-website"]
+    "alt": "Ayro Escobar, software engineer, Plano, Texas. His sentence, with a glass lens reading it line by line: I am trying to build a life where my family never has to worry about money, and ship a few things that outlast me along the way. Click for ayroescobar.com.",
+    "factIds": ["identity-name", "identity-role", "identity-hometown", "voice-the-map", "ln-website"]
   },
   "now": [
-    { "org": "VIAERE", "role": "CO-FOUNDER", "say": "Viaere, co-founder", "factIds": ["ven-viaere-bio"] },
-    { "org": "MD7", "role": "ENGINEER", "say": "MD7, engineer", "factIds": ["exp-md7"] },
-    { "org": "MLH", "role": "COACH", "say": "MLH, coach", "factIds": ["exp-mlh-coach"] }
+    { "org": "Viaere", "role": "co-founder, engineering", "since": "2026", "say": "Viaere, co-founder, engineering, since 2026", "factIds": ["ven-viaere-bio", "ven-viaere-dates"] },
+    { "org": "MD7", "role": "software engineer, contract", "since": "may 2026", "say": "MD7, software engineer, contract, since May 2026", "factIds": ["exp-md7"] },
+    { "org": "MLH", "role": "coach", "since": "2025", "say": "MLH, coach, since 2025", "factIds": ["exp-mlh-coach"] }
   ],
   "route": [
     { "date": "2025 to 2026", "org": "HackUTD", "role": "tech team, HackPortal", "state": "done", "say": "HackUTD tech team, 2025 to 2026", "factIds": ["com-hackutd"] },
@@ -91,7 +92,7 @@
   ],
   "pulse": {
     "login": "AyroEscobar",
-    "alt": "The last 52 weeks of GitHub activity, drawn as a lit route. Redrawn every day by a scheduled workflow in this repo.",
+    "alt": "The last 52 weeks of GitHub activity, drawn as bars of light with a glass lens over the latest weeks. Redrawn every day by a scheduled workflow in this repo.",
     "factIds": ["ln-github"]
   },
   "links": {
