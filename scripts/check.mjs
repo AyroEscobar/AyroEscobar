@@ -11,13 +11,14 @@
 // Rule -> check
 //   no em or en dashes anywhere visible ................................. dashes
 //   every image has alt text and sits inside a real link ................ links
-//   every themed image ships dark and light, every <picture> has both ... themes
+//   every <picture> has both themes, and its <img> fallback is light .... themes
 //   alt text in the README matches the <desc> inside the SVG ............ alt-matches-desc
 //   SVGs are self-contained: no network, no script, no web fonts ........ svg-safety
 //   every SVG has role="img", <title> and <desc> ......................... svg-a11y
 //   size budget: 60 KB per SVG, 250 KB per theme ........................ size
 //   motion only in the hero, only behind prefers-reduced-motion ......... motion
-//   text colours 4.5:1, meaningful strokes 3:1, both themes ............. contrast
+//   text 4.5:1 (large 3:1) and strokes 3:1 over the worst glass or field
+//   composite each token may sit on, both themes ........................ contrast
 //   every fact in profile.json carries a fact id (public with --facts) .. facts
 //   the age appears once in the README and in no SVG .................... age
 //   no third-party image hosts ........................................... image-hosts
@@ -28,7 +29,8 @@ import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync } 
 import { tmpdir } from 'node:os';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { palettes } from './lib/tokens.mjs';
+import { palettes, textOn } from './lib/tokens.mjs';
+import { composite, ratio } from './lib/color.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -86,7 +88,9 @@ for (const pic of pictures) {
     continue;
   }
   if (dark[1].replace('-dark.svg', '') !== light[1].replace('-light.svg', '')) fail('themes', `mismatched pair ${dark[1]} / ${light[1]}`);
-  if (img[1] !== dark[1]) fail('themes', `img fallback ${img[1]} should be the dark variant ${dark[1]}`);
+  // light first: the fallback is what a reader sees when the theme is unknown (the GitHub
+  // Mobile app's behaviour is unverified), and the brief is bright
+  if (img[1] !== light[1]) fail('themes', `img fallback ${img[1]} should be the light variant ${light[1]}`);
   for (const src of [dark[1], light[1]]) {
     if (src.startsWith('https://')) {
       if (unescape(img[2]) !== profile.pulse.alt) fail('alt-matches-desc', `${src}: alt differs from profile.pulse.alt`);
@@ -101,7 +105,8 @@ for (const pic of pictures) {
   }
 }
 
-// svg-safety, svg-a11y, size, motion
+// svg-safety, svg-a11y, size, motion. svg-safety's '<image' does not match '<feImage': a
+// <feImage href="#id"> is a local fragment, not an external image (none is used today).
 const totals = {};
 for (const [name, svg] of svgs) {
   const body = svg.replace('xmlns="http://www.w3.org/2000/svg"', '');
@@ -139,26 +144,27 @@ for (const [theme, total] of Object.entries(totals)) {
   if (total > 250 * 1024) fail('size', `the ${theme} set is ${total} bytes (limit 256000)`);
 }
 
-// contrast, computed from the tokens
-{
-  const lum = (hex) => {
-    const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
-    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
-  };
-  const ratio = (a, b) => {
-    const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
-    return (x + 0.05) / (y + 0.05);
-  };
-  for (const [theme, pal] of Object.entries(palettes)) {
-    for (const bg of ['night', 'deck']) {
-      for (const fg of ['ink', 'dim', 'sodium', 'led']) {
-        const r = ratio(pal[fg], pal[bg]);
-        if (r < 4.5) fail('contrast', `${theme}: ${fg} on ${bg} is ${r.toFixed(2)}:1 (text needs 4.5)`);
+// contrast, computed from the tokens on the composite a reader actually sees: the base, the
+// strongest blob of the field at full strength, and for glass the backdrop filter and the least
+// tint (plus scrim) that ever sits under text. textOn in tokens.mjs says which token may sit on
+// which surface and the ratio it needs there.
+for (const [theme, pal] of Object.entries(palettes)) {
+  for (const [surface, { need, tokens }] of Object.entries(textOn)) {
+    for (const [blob, tone] of Object.entries(pal.field)) {
+      const under = composite(pal, tone, surface);
+      for (const tk of tokens) {
+        const r = ratio(pal[tk], under);
+        if (r < need) fail('contrast', `${theme}: ${tk} on ${surface} over ${blob} is ${r.toFixed(2)}:1 (needs ${need})`);
       }
-      for (const fg of ['traceLit', 'sodiumStroke', 'beacon']) {
-        const r = ratio(pal[fg], pal[bg]);
-        if (r < 3) fail('contrast', `${theme}: ${fg} on ${bg} is ${r.toFixed(2)}:1 (meaningful strokes need 3)`);
-      }
+    }
+  }
+  // strokes that carry meaning, all drawn on glass sheets: the spine and past rings (ink3),
+  // the now beads and chip lines (accent)
+  for (const [blob, tone] of Object.entries(pal.field)) {
+    const under = composite(pal, tone, 'sheet');
+    for (const fg of ['ink3', 'accent']) {
+      const r = ratio(pal[fg], under);
+      if (r < 3) fail('contrast', `${theme}: ${fg} strokes over ${blob} are ${r.toFixed(2)}:1 (need 3)`);
     }
   }
 }
