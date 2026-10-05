@@ -11,8 +11,8 @@ const SPINE_X = 84;
 const TEXT_X = 120;
 const RIGHT = 830;
 const TOP = 82; // first org baseline
-const STEP = 78;
-const ROLE_DY = 36;
+const STEP = 86;
+const ROLE_DY = 35;
 const DOT_DY = -11; // org baseline to bead centre
 
 export function routeAlt(profile) {
