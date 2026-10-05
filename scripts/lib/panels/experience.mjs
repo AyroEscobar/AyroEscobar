@@ -34,7 +34,7 @@ export function experience(exp, theme) {
   const i = frame.inset;
   doc.add(glass(doc, {
     id: 's', x: i, y: i, w: W - 2 * i, h: H - 2 * i, r: frame.inner, theme,
-    scrims: [{ x: i + 12, y: i + 12, w: W - 2 * i - 24, h: H - 2 * i - 24, r: 12 }],
+    scrims: [{ x: i, y: i, w: W - 2 * i, h: H - 2 * i, r: frame.inner }],
     light: rock,
   }).markup);
 

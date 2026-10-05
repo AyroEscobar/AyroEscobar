@@ -49,7 +49,7 @@ export function venture(v, theme, index) {
   doc.add(drawWorld(doc, { w: W, h: H, r: frame.radius }));
   const sheet = glass(doc, {
     id: 's', x: i, y: i, w: sheetW, h: H - 2 * i, r: frame.inner, theme,
-    scrims: [{ x: i + 12, y: i + 12, w: scrimW, h: H - 2 * i - 24, r: 12 }],
+    scrims: [{ x: i, y: i, w: sheetW, h: H - 2 * i, r: frame.inner }],
     light: rock,
   });
   doc.add(sheet.markup);
