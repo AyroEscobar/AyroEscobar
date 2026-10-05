@@ -3,24 +3,24 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/hero-light.svg">
-    <img src="assets/hero-dark.svg" width="100%" alt="Ayro Escobar. Software engineer from Plano, Texas, studying computer science at UT Dallas. Click for ayroescobar.com.">
+    <img src="assets/hero-light.svg" width="100%" alt="Ayro Escobar, software engineer, Plano, Texas. His sentence, with a glass lens reading it line by line: I am trying to build a life where my family never has to worry about money, and ship a few things that outlast me along the way. Click for ayroescobar.com.">
   </picture>
 </a>
 </p>
 
 I am twenty years old, out of Plano, Texas. I am trying to build a life where my family never has to worry about money, and ship a few things that outlast me along the way. That sentence is the whole map. Every role I take and every hour I spend gets weighed against it.
 
+## now
+
 <p>
 <a href="#now">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/now-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/now-light.svg">
-    <img src="assets/now-dark.svg" width="100%" alt="Now board: Viaere, co-founder. MD7, engineer. MLH, coach. As of October 2026.">
+    <img src="assets/now-light.svg" width="100%" alt="Now: Viaere, co-founder, engineering, since 2026. MD7, software engineer, contract, since May 2026. MLH, coach, since 2025. As of October 2026.">
   </picture>
 </a>
 </p>
-
-## now
 
 - **Viaere** · Co-founder, Engineering. I build the product end to end, ship every release, and answer the phone. Built beside the hangar floor with Garrett Taylor (maintenance) and Dylan Badowski (flight operations). [viaere.com](https://viaere.com)
 - **MD7** · Software Engineer (contract), since May 2026. Executive dashboards that replace Power BI, shipped directly with the CTO, with real ownership over architecture and ship cadence.
@@ -32,7 +32,7 @@ I am twenty years old, out of Plano, Texas. I am trying to build a life where my
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/ventures/viaere-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/ventures/viaere-light.svg">
-    <img src="assets/ventures/viaere-dark.svg" width="100%" alt="Viaere: co-founder, engineering. Know what's red before you walk into the hangar. Maintenance-first fleet operations software for flight schools, charter operators, flying clubs and managed owners.">
+    <img src="assets/ventures/viaere-light.svg" width="100%" alt="Viaere: co-founder, engineering. Know what's red before you walk into the hangar. Maintenance-first fleet operations software for flight schools, charter operators, flying clubs and managed owners.">
   </picture>
 </a>
 </p>
@@ -40,9 +40,9 @@ I am twenty years old, out of Plano, Texas. I am trying to build a life where my
 ## built
 
 <p>
-<a href="https://github.com/AyroEscobar/pool-tournament-system"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/pool-tournament-system-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/pool-tournament-system-light.svg"><img src="assets/projects/pool-tournament-system-dark.svg" width="49.9%" alt="Pool tournament scheduler, 2026. A single-file web app that schedules and simulates an eight-ball tournament, checked by just over 100,000 assertions."></picture></a><a href="https://github.com/AyroEscobar/neetcode-coach"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/neetcode-coach-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/neetcode-coach-light.svg"><img src="assets/projects/neetcode-coach-dark.svg" width="49.9%" alt="neetcode coach, 2026. A Socratic NeetCode 150 coach in Java that runs inside Claude Code and never writes the solution."></picture></a><br>
-<a href="https://github.com/AyroEscobar/HTN2025"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/routed-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/routed-light.svg"><img src="assets/projects/routed-dark.svg" width="49.9%" alt="Routed, Hack the North 2025. A trip planner that pairs recommendations with action, with a voice AI that calls ahead."></picture></a><a href="https://github.com/AyroEscobar/HackAI2025"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/gaia-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/gaia-light.svg"><img src="assets/projects/gaia-dark.svg" width="49.9%" alt="Gaia, HackAI 2025, with a team. An AI journaling app for women in unsafe relationships that tracks emotional change over time."></picture></a><br>
-<a href="https://github.com/acm-projects/ReQuest"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/request-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/request-light.svg"><img src="assets/projects/request-dark.svg" width="49.9%" alt="ReQuest, ACM UTD Projects. Point your camera at an item and it tells you where to recycle, sell, donate or dispose of it."></picture></a><a href="https://github.com/AyroEscobar/HackUTDDiscordBot"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/hackutd-bot-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/hackutd-bot-light.svg"><img src="assets/projects/hackutd-bot-dark.svg" width="49.9%" alt="HackUTD bot, 2025. A Python bot for HackUTD's Discord servers."></picture></a>
+<a href="https://github.com/AyroEscobar/pool-tournament-system"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/pool-tournament-system-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/pool-tournament-system-light.svg"><img src="assets/projects/pool-tournament-system-light.svg" width="49.9%" alt="Pool tournament scheduler, 2026. A single-file web app that schedules and simulates an eight-ball tournament, checked by just over 100,000 assertions."></picture></a><a href="https://github.com/AyroEscobar/neetcode-coach"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/neetcode-coach-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/neetcode-coach-light.svg"><img src="assets/projects/neetcode-coach-light.svg" width="49.9%" alt="neetcode coach, 2026. A Socratic NeetCode 150 coach in Java that runs inside Claude Code and never writes the solution."></picture></a><br>
+<a href="https://github.com/AyroEscobar/HTN2025"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/routed-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/routed-light.svg"><img src="assets/projects/routed-light.svg" width="49.9%" alt="Routed, Hack the North 2025. A trip planner that pairs recommendations with action, with a voice AI that calls ahead."></picture></a><a href="https://github.com/AyroEscobar/HackAI2025"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/gaia-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/gaia-light.svg"><img src="assets/projects/gaia-light.svg" width="49.9%" alt="Gaia, HackAI 2025, with a team. An AI journaling app for women in unsafe relationships that tracks emotional change over time."></picture></a><br>
+<a href="https://github.com/acm-projects/ReQuest"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/request-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/request-light.svg"><img src="assets/projects/request-light.svg" width="49.9%" alt="ReQuest, ACM UTD Projects. Point your camera at an item and it tells you where to recycle, sell, donate or dispose of it."></picture></a><a href="https://github.com/AyroEscobar/HackUTDDiscordBot"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/projects/hackutd-bot-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/projects/hackutd-bot-light.svg"><img src="assets/projects/hackutd-bot-light.svg" width="49.9%" alt="HackUTD bot, 2025. A Python bot for HackUTD's Discord servers."></picture></a>
 </p>
 
 <details>
@@ -66,7 +66,7 @@ Two more off the cards: [Interview-Lens](https://interview-lens.com) ([code](htt
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/route-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/route-light.svg">
-    <img src="assets/route-dark.svg" width="100%" alt="Route: HackUTD tech team, 2025 to 2026. MLH coach, 2025 to now. RBC Capital Markets, New York, software engineer intern, January to April 2026, six desks. Viaere co-founder, engineering, 2026 to now. MD7 software engineer, contract, May 2026 to now. JPMorgan Chase CIB software engineer intern, June to August 2026.">
+    <img src="assets/route-light.svg" width="100%" alt="Route: HackUTD tech team, 2025 to 2026. MLH coach, 2025 to now. RBC Capital Markets, New York, software engineer intern, January to April 2026, six desks. Viaere co-founder, engineering, 2026 to now. MD7 software engineer, contract, May 2026 to now. JPMorgan Chase CIB software engineer intern, June to August 2026.">
   </picture>
 </a>
 </p>
@@ -112,7 +112,7 @@ Building something, stuck on something hard, or just want to trade ideas? My inb
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/AyroEscobar/AyroEscobar/output/pulse-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/AyroEscobar/AyroEscobar/output/pulse-light.svg">
-    <img src="https://raw.githubusercontent.com/AyroEscobar/AyroEscobar/output/pulse-dark.svg" width="100%" alt="The last 52 weeks of GitHub activity, drawn as a lit route. Redrawn every day by a scheduled workflow in this repo.">
+    <img src="https://raw.githubusercontent.com/AyroEscobar/AyroEscobar/output/pulse-light.svg" width="100%" alt="The last 52 weeks of GitHub activity, drawn as bars of light with a glass lens over the latest weeks. Redrawn every day by a scheduled workflow in this repo.">
   </picture>
 </a>
 </p>
