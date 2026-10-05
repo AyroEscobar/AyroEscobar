@@ -1,11 +1,11 @@
 {
   "files": {
     "assets/hero-dark.jpg": {
-      "bytes": 252981,
+      "bytes": 251929,
       "width": 2560,
       "height": 1280,
       "quality": 92,
-      "sha256": "82f6103683a65014516122c19f7fc19ecaef24fdf61890906185c463d6e5547c",
+      "sha256": "77f3c0c54a2b480a33dfc5ca28e96e1125751011bce9166c57935717848e8abf",
       "frame": {
         "t": 2.3,
         "p": 0,
@@ -21,11 +21,11 @@
       }
     },
     "assets/hero-light.jpg": {
-      "bytes": 215165,
+      "bytes": 214950,
       "width": 2560,
       "height": 1280,
       "quality": 92,
-      "sha256": "822d98e351ae8d55871611c50d93517fa676217c84eba3e15c603d18dc644c63",
+      "sha256": "9e0f13623dc99dc20adf86c83d923df8a4d55021f33c0f50194e64175ae904a0",
       "frame": {
         "t": 2.3,
         "p": 1,
