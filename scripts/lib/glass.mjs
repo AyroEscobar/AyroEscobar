@@ -46,7 +46,8 @@ const blurFilter = (id, sd, region = '-50%') =>
 //
 // blobs: [{ c: 'peach', x, y, r, rx?, ry?, k? }]  k scales the token alpha
 // grid:  { size, alpha, fade: [y0, y1] }           fades to nothing between y0 and y1
-// pools: [{ x, y, w, h }]                          only painted where the theme has a scrim
+// pools: [{ x, y, w, h }]                          boxes of text on the field; only painted
+//                                                  where the theme has a scrim
 // extra: markup drawn last, as part of the field (the hero's sentence, so the lens reads it)
 // dx, dy shift everything (a card shows its own window of a larger field)
 export function field(doc, { id = 'f', w, h, theme, blobs, grid = null, pools = [], extra = '', dx = 0, dy = 0 }) {
@@ -91,11 +92,15 @@ export function field(doc, { id = 'f', w, h, theme, blobs, grid = null, pools = 
     parts.push(el('rect', { width: w, height: h, fill: `url(#${id}-gp)`, mask }));
   }
   if (pal.scrim.a > 0 && pools.length) {
-    doc.shared('pool-blur', blurFilter('pool-blur', 26));
-    parts.push(
-      el('g', { fill: pal.scrim.c, 'fill-opacity': pal.scrim.a, filter: 'url(#pool-blur)' },
-        pools.map((p) => el('rect', { x: p.x, y: p.y, width: p.w, height: p.h, rx: Math.min(p.h / 2, 40) })).join('')),
+    // soft radial pools with no edge anywhere: full strength over the middle of the box,
+    // fading out well past it
+    const a = pal.scrim.a;
+    doc.shared(
+      'pool',
+      el('radialGradient', { id: 'pool' },
+        [[0, 1], [0.55, 1], [0.8, 0.45], [1, 0]].map(([o, k]) => el('stop', { offset: o, 'stop-color': pal.scrim.c, 'stop-opacity': Math.round(a * k * 1000) / 1000 })).join('')),
     );
+    for (const p of pools) parts.push(el('ellipse', { cx: p.x + p.w / 2, cy: p.y + p.h / 2, rx: p.w * 0.8, ry: p.h * 0.9, fill: 'url(#pool)' }));
   }
   parts.push(extra);
   doc.defs.push(el('g', { id }, parts.join('')));
@@ -162,10 +167,10 @@ export function glass(doc, { id, x, y, w, h, r, kind = 'sheet', theme, field: fi
     // magnification, softened, fades in toward each edge
     const edge = edgeMagnify(magnify);
     const em = `matrix(${fmt(edge[0])} 0 0 ${fmt(edge[1])} ${fmt(cx * (1 - edge[0]))} ${fmt(cy * (1 - edge[1]))})`;
-    doc.shared('gb-edge', el('filter', { id: 'gb-edge', x: '-10%', y: '-10%', width: '120%', height: '120%' }, el('feGaussianBlur', { stdDeviation: 2.4 })));
+    doc.shared('gb-edge', el('filter', { id: 'gb-edge', x: '-10%', y: '-10%', width: '120%', height: '120%' }, el('feGaussianBlur', { stdDeviation: 3.2 })));
     doc.defs.push(
       el('linearGradient', { id: doc.id(`${id}-eg`), gradientUnits: 'userSpaceOnUse', x1: 0, y1: y, x2: 0, y2: y + h },
-        [[0, 0.9], [0.14, 0], [0.86, 0], [1, 0.9]].map(([o, k]) => el('stop', { offset: o, 'stop-color': '#fff', 'stop-opacity': k })).join('')),
+        [[0, 0.75], [0.14, 0], [0.86, 0], [1, 0.75]].map(([o, k]) => el('stop', { offset: o, 'stop-color': '#fff', 'stop-opacity': k })).join('')),
       el('mask', { id: doc.id(`${id}-em`), maskUnits: 'userSpaceOnUse', x, y, width: w, height: h }, el('rect', { ...rect, fill: `url(#${id}-eg)` })),
     );
     back += el('g', { mask: `url(#${id}-em)` }, wrap(edgeClass, el('use', { href: `#${fid}`, filter: 'url(#gb-edge)', transform: em })));
