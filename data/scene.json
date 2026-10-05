@@ -1,0 +1,47 @@
+{
+  "note": "How scripts/render-scene.mjs frames the boulder scene for the README heroes. Not facts: camera time, scroll progress, viewport, crop and the plate's place. The words on the plate come from profile.json hero.plate.",
+  "budget": 307200,
+  "plate": {
+    "nameSize": 100,
+    "lineSize": 40,
+    "radius": 44
+  },
+  "dark": {
+    "t": 2.3,
+    "p": 0,
+    "view": {
+      "w": 1520,
+      "h": 640
+    },
+    "crop": {
+      "x": 0,
+      "y": 0
+    },
+    "plate": {
+      "x": 56,
+      "y": 150,
+      "w": 500,
+      "scrim": 0.5,
+      "rim": 72
+    }
+  },
+  "light": {
+    "t": 2.3,
+    "p": 1,
+    "view": {
+      "w": 1600,
+      "h": 800
+    },
+    "crop": {
+      "x": 120,
+      "y": 70
+    },
+    "plate": {
+      "x": 56,
+      "y": 150,
+      "w": 500,
+      "scrim": 0.5,
+      "rim": 80
+    }
+  }
+}
