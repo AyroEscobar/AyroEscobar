@@ -1,5 +1,4 @@
-// SVG plumbing: deterministic numbers, the document shell, the shared panel frame.
-import { frame as F } from './tokens.mjs';
+// SVG plumbing: deterministic numbers and the document shell.
 import { GlyphSet, textRun } from './text.mjs';
 
 // Fixed decimal formatting so the same input always yields the same bytes.
@@ -53,6 +52,17 @@ export class Doc {
     this.style = '';
     this.body = [];
     this.ids = new Set();
+    this.sharedKeys = new Set();
+  }
+
+  // A def several layers may ask for (a filter, a gradient): added once, under its id.
+  shared(id, markup) {
+    if (!this.sharedKeys.has(id)) {
+      this.sharedKeys.add(id);
+      this.id(id);
+      this.defs.push(markup);
+    }
+    return id;
   }
 
   id(name) {
@@ -85,30 +95,4 @@ export class Doc {
       `</svg>\n`
     );
   }
-}
-
-// The shared panel: an opaque rounded screen and a hairline frame. No corner ticks: the site
-// cuts HUD brackets, and the panels should read as instruments, not a template.
-export function panelBase(doc, { bg = 'night' } = {}) {
-  const { w, h, pal } = doc;
-  doc.add(el('rect', { width: w, height: h, rx: F.radius, fill: pal[bg] }));
-  return doc;
-}
-
-export function panelFrame(doc) {
-  const { w, h, pal } = doc;
-  doc.add(
-    el('rect', {
-      x: 0.5,
-      y: 0.5,
-      width: w - 1,
-      height: h - 1,
-      rx: F.radius - 0.5,
-      fill: 'none',
-      stroke: pal.traceLit,
-      'stroke-width': F.hairline,
-      'stroke-opacity': F.hairlineOpacity,
-    }),
-  );
-  return doc;
 }
