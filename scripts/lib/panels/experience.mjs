@@ -10,23 +10,22 @@ const W = 880;
 const BEAD_X = 64;
 const LEFT = 100;
 const RIGHT = 820;
-const TOP = 88;
-const PITCH = 98;
+const TOP = 80;
+const PITCH = 88;
 
 export function experience(exp, theme) {
   const pal = palettes[theme];
   const rows = exp.lines;
   const last = TOP + (rows.length - 1) * PITCH;
-  const H = last + 38 + 52;
+  const H = last + 35 + 46;
   const doc = new Doc({ w: W, h: H, pal, title: 'Experience', desc: exp.alt });
 
-  const rock = { x: W - 70, y: -40, r: 150, tilt: -12 }; // above the frame: only its light reaches in
+  const rock = { x: W - 70, y: -40 }; // the rock, up the slope out of frame: the rims face it
   world(doc, {
     w: W, h: H, theme,
     horizon: H * 0.3,
     ridge: { base: H * 0.3, amp: 26, seed: 11 },
     slope: { y0: H * 0.9, y1: H * 0.36 },
-    rock,
     contours: 6,
     seed: 5,
   });
@@ -60,7 +59,7 @@ export function experience(exp, theme) {
     const org = doc.text(fonts.sans, row.org, { x: LEFT, y, size: type.rowOrg, tracking: -0.01 });
     const date = doc.text(fonts.text, row.date, { x: RIGHT, y, size: type.rowLine, anchor: 'end' });
     if (org.end > date.x - 24) throw new Error(`experience: ${row.org} runs into its dates`);
-    const role = doc.text(fonts.text, row.role, { x: LEFT, y: y + 38, size: type.rowLine });
+    const role = doc.text(fonts.text, row.role, { x: LEFT, y: y + 35, size: type.rowLine });
     if (role.end > RIGHT) throw new Error(`experience: ${row.role} is too wide`);
     orgs.push(org.markup);
     (row.now ? dates : past).push(date.markup);
