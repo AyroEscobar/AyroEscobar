@@ -130,8 +130,6 @@ export const frame = {
 
 export const motion = {
   lensSeconds: 16, // the lens reads the sentence: four lines down and back
-  streakSeconds: 6,
-  streakLow: 0.35,
 };
 
 export const fonts = {

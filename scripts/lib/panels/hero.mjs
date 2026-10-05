@@ -85,7 +85,9 @@ export function hero(profile, theme) {
 
   // The lens and its backdrop move together; inside the moving lens the backdrop counter-moves
   // by the magnification, so the words under it are always the right words. One @keyframes,
-  // three elements, each scaling the step with its own --k.
+  // three elements, each scaling the step with its own --k. This is the README's only loop:
+  // anything else that moves inside an <img> makes the browser redraw the whole filtered
+  // panel every frame.
   const step = lead;
   const edge = edgeMagnify(MAG);
   const at = (n) => `transform:translateY(calc(var(--k)*${n * step}px))`;
@@ -93,9 +95,7 @@ export function hero(profile, theme) {
     `.lens{--k:1}.lens-in{--k:${fmt(-MAG[1])}}.lens-edge{--k:${fmt(-edge[1])}}` +
     `@media (prefers-reduced-motion:no-preference){` +
     `.lens,.lens-in,.lens-edge{animation:read ${motion.lensSeconds}s cubic-bezier(.22,1,.36,1) infinite}` +
-    `.streak{animation:sk ${motion.streakSeconds}s ease-in-out infinite}` +
-    `@keyframes read{0%,19%{${at(0)}}25%,44%{${at(1)}}50%,69%{${at(2)}}75%,90%{${at(3)}}100%{${at(0)}}}` +
-    `@keyframes sk{50%{opacity:${motion.streakLow}}}}`;
+    `@keyframes read{0%,19%{${at(0)}}25%,44%{${at(1)}}50%,69%{${at(2)}}75%,90%{${at(3)}}100%{${at(0)}}}}`;
 
   doc.add(
     drawField(doc, { w: W, h: H, r: frame.radius }),
