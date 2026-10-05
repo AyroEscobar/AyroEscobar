@@ -54,7 +54,7 @@ export function venture(v, theme) {
       { c: 'sky', x: 860, y: 120, r: 280 },
       { c: 'peach', x: 80, y: 40, r: 240, k: 0.8 },
       // the lamps' light, under the glass
-      ...lamps.map((l) => ({ c: glow[l.name], x: l.cx, y: lampY, r: 150, k: 1.1 })),
+      ...lamps.map((l) => ({ c: glow[l.name], x: l.cx, y: lampY, r: 130, k: 1.25 })),
     ],
   });
   doc.add(drawField(doc, { w: W, h: H, r: frame.radius }));
@@ -83,13 +83,13 @@ export function venture(v, theme) {
   for (const l of lamps) {
     const c = pal.lamp[l.name];
     doc.add(
-      el('circle', { cx: l.cx, cy: lampY, r: 13, fill: c, 'fill-opacity': 0.22 }),
-      el('circle', { cx: l.cx, cy: lampY, r: 8.5, fill: c }),
-      el('circle', { cx: l.cx - 2.6, cy: lampY - 2.8, r: 2.6, fill: '#fff', 'fill-opacity': 0.75 }),
+      el('circle', { cx: l.cx, cy: lampY, r: 16, fill: c, 'fill-opacity': 0.2 }),
+      el('circle', { cx: l.cx, cy: lampY, r: 10, fill: c }),
+      el('circle', { cx: l.cx - 3, cy: lampY - 3.2, r: 3, fill: '#fff', 'fill-opacity': 0.75 }),
     );
   }
   doc.add(
-    el('circle', { cx: fourth, cy: lampY, r: 8.5, fill: 'none', stroke: pal.lamp.off, 'stroke-width': 2 }),
+    el('circle', { cx: fourth, cy: lampY, r: 10, fill: 'none', stroke: pal.lamp.off, 'stroke-width': 2 }),
     panelEdge(doc, { w: W, h: H, r: frame.radius, theme }),
   );
   return doc.render();
